@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FungWahTools</string>
+    <string name="sputil_name">com.example.fungwahtools.PREFERENCE_FILE_KEY</string>
+</resources>
