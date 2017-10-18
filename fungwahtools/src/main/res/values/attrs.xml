@@ -4,6 +4,7 @@
         <attr name="radius" format="float"/>
         <attr name="offsetX" format="float"/>
         <attr name="offsetY" format="float"/>
-        <attr name="shadowColor" format="color"/>
+        <attr name="shadowColor" format="string"/>
+        <attr name="backgroundColor" format="string"/>
     </declare-styleable>
 </resources>
