@@ -48,10 +48,12 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <include layout="@layout/homepage_fragment"/>
+
+            <!--<android.support.v4.view.ViewPager-->
+                <!--android:id="@+id/vp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
 
         </LinearLayout>
 

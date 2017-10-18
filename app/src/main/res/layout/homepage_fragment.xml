@@ -2,38 +2,90 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    
-    <RelativeLayout
-        android:elevation="3dip"
-        android:background="@color/colorPrimary"
+
+    <com.example.fungwahtools.ShadowView
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        android:background="@color/colorPrimary"
+        app:radius="5"
+        android:elevation="3dip">
 
         <TextView
-            android:textColor="@android:color/white"
-            android:text="1月1日"
-            android:layout_marginBottom="42dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentBottom="true"
-            android:textSize="30sp"
             android:id="@+id/homepage_date_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="42dp"
+            android:layout_marginLeft="20dp"
+            android:text="1月1日"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
             android:text="星期一"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginRight="40dp"
+                    android:src="@drawable/course" />
+
+                <TextView
+                    android:id="@+id/activities_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/activity" />
+
+                <TextView
+                    android:id="@+id/course_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
 
-
-
-    </RelativeLayout>
+    </com.example.fungwahtools.ShadowView>
 
 </LinearLayout>
