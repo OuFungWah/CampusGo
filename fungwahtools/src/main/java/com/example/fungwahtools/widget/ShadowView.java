@@ -79,12 +79,7 @@ public class ShadowView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         setLayerType(LAYER_TYPE_SOFTWARE, null);
-        Log.d(TAG, "onDraw: left:" + getLeft());
-        Log.d(TAG, "onDraw: top:" + getTop());
-        Log.d(TAG, "onDraw: right:" + getRight());
-        Log.d(TAG, "onDraw: bottom:" + getBottom());
         RectF rectf = new RectF(getLeft(), getTop(), getRight(), getBottom() - radius / 2);
-        Log.d(TAG, "onDraw: 执行了");
         canvas.drawRect(rectf, paint);
 
     }

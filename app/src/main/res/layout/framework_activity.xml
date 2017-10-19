@@ -21,6 +21,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:elevation="3dip"
                 android:background="@color/colorPrimary">
 
                 <LinearLayout
@@ -48,12 +49,12 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <include layout="@layout/homepage_fragment"/>
+            <!--<include layout="@layout/homepage_fragment"/>-->
 
-            <!--<android.support.v4.view.ViewPager-->
-                <!--android:id="@+id/vp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/framework_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

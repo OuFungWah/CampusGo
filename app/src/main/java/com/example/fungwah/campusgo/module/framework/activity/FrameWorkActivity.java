@@ -1,5 +1,6 @@
 package com.example.fungwah.campusgo.module.framework.activity;
 
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +12,11 @@ import android.widget.ImageView;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
+import com.example.fungwah.campusgo.module.framework.adapter.FragmentPageAdapter;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerItemBean;
+import com.example.fungwah.campusgo.module.homepage.fragment.HomepageFragment;
 import com.example.fungwahtools.activity.BaseActivity;
+import com.example.fungwahtools.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,11 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private RecyclerView drawerRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private DrawerListAdapter drawerAdapter;
+
+    private ViewPager viewPager;
+    private List<BaseFragment> fragmentList = new ArrayList<>();
+    private FragmentPageAdapter fragmentPageAdapter;
+
     private List<DrawerItemBean> list = new ArrayList<>();
     private final static int ICON_RES_ARR[] = {R.drawable.home, R.drawable.timeline, R.drawable.discover, R.drawable.group, 0, R.drawable.settings, R.drawable.info};
     private final static String NAME_ARR[] = {"首页", "时间线", "发现", "组", null, "设置", "关于"};
@@ -32,7 +41,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected int getLayoutId() {
-        return R.layout.homepage;
+        return R.layout.framework_activity;
     }
 
     @Override
@@ -41,9 +50,18 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         toolbar = findView(R.id.toolbar);
         nav_img = findView(R.id.navigation_img);
         drawerRecyclerView = findView(R.id.drawer_rv);
+        viewPager = findView(R.id.framework_vp);
         layoutManager = new LinearLayoutManager(FrameWorkActivity.this, LinearLayoutManager.VERTICAL, false);
         initDrawerItemList();
+        initFragmentList();
+
+        fragmentPageAdapter = new FragmentPageAdapter(fragmentList,getSupportFragmentManager());
         drawerAdapter = new DrawerListAdapter(list);
+    }
+
+    // 初始化Fragment列表
+    private void initFragmentList() {
+        fragmentList.add(new HomepageFragment());
     }
 
     //初始化侧拉栏列表
@@ -66,6 +84,8 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
 
         drawerRecyclerView.setAdapter(drawerAdapter);
         drawerRecyclerView.setLayoutManager(layoutManager);
+
+        viewPager.setAdapter(fragmentPageAdapter);
     }
 
     @Override
