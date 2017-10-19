@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
-import com.example.fungwah.campusgo.module.framework.adapter.FragmentPageAdapter;
+import com.example.fungwah.campusgo.command.adapter.FragmentPageAdapter;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerItemBean;
 import com.example.fungwah.campusgo.module.homepage.fragment.HomepageFragment;
 import com.example.fungwahtools.activity.BaseActivity;

@@ -1,4 +1,4 @@
-package com.example.fungwah.campusgo.module.framework.adapter;
+package com.example.fungwah.campusgo.command.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
