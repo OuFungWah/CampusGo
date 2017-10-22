@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.module.homepage.adapter.TimeLineListAdapter;
+import com.example.fungwah.campusgo.module.timeline.adapter.TimeLineListAdapter;
 import com.example.fungwah.campusgo.module.homepage.bean.TimeLineItem;
 import com.example.fungwahtools.fragment.BaseFragment;
 

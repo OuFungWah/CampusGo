@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerDividerViewHolder;
@@ -16,7 +17,9 @@ import java.util.List;
  * Created by FungWah on 2017/10/17.
  */
 
-public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+
+    private OnItemClickListener onItemClickListener;
 
     enum TYPE {
         DIVIDER,
@@ -44,6 +47,8 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(this);
         if(holder instanceof DrawerItemViewHolder){
             DrawerItemBean bean = list.get(position);
             ((DrawerItemViewHolder)holder).icon.setImageResource(bean.getIconRes());
@@ -64,6 +69,24 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        onItemClickListener.onItemClick(view,(int)view.getTag());
+    }
+
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
     }
 
 }
