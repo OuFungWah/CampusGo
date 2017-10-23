@@ -53,10 +53,11 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
         addFAB = findView(R.id.homepage_timeline_add_fab);
         tabLayout = findView(R.id.homepage_tab_layout);
         viewPager = findView(R.id.homepage_fragment_content_vp);
-        pagerAdapter = new FragmentPageAdapter(fragmentList, ((BaseActivity) getActivity()).getSupportFragmentManager());
+        // TODO: 2017/10/23  此处注意，Fragment 嵌套使用时，子 fragment 添加的是 ChildFragmentManager 而非 SupportFragmentManager ,回头了解一下
+        pagerAdapter = new FragmentPageAdapter(fragmentList, getChildFragmentManager());
 
         dialog = new Dialog(getContext(), R.style.MyDialog);
-        dialogView = LayoutInflater.from(getContext()).inflate(R.layout.include_add_fab_layout, (ViewGroup) ((FrameWorkActivity)getActivity()).getContentView(),false);
+        dialogView = LayoutInflater.from(getContext()).inflate(R.layout.include_add_fab_layout, null);
     }
 
     private void initFragmentList() {
@@ -81,8 +82,6 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
 
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         tabLayout.setTabTextColors(Color.WHITE, Color.WHITE);
-//        tabLayout.addTab(tabLayout.newTab().setText("时间线"));
-//        tabLayout.addTab(tabLayout.newTab().setText("动态"));
         tabLayout.getTabAt(0).setText("时间线");
         tabLayout.getTabAt(1).setText("动态");
 
