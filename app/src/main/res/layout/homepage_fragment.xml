@@ -1,137 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@color/colorPrimary"
-        android:elevation="3dip">
-
-        <!--<com.example.fungwahtools.widget.ShadowView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:shadowColor="@android:color/black"-->
-        <!--app:backgroundColor="@color/colorPrimary"-->
-        <!--app:offsetY="2"-->
-        <!--app:radius="10" />-->
-
-        <TextView
-            android:id="@+id/homepage_date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="42dp"
-            android:layout_marginLeft="20dp"
-            android:text="1月1日"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="14dp"
-            android:layout_marginLeft="20dp"
-            android:text="星期一"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="60dp"
-            android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true">
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/colorPrimary"
+            android:elevation="3dip">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <!--<com.example.fungwahtools.widget.ShadowView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:shadowColor="@android:color/black"-->
+            <!--app:backgroundColor="@color/colorPrimary"-->
+            <!--app:offsetY="2"-->
+            <!--app:radius="10" />-->
 
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_marginRight="40dp"
-                    android:src="@drawable/course_white" />
-
-                <TextView
-                    android:id="@+id/activities_num_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:text="4"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <TextView
+                android:id="@+id/homepage_date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:orientation="horizontal">
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="42dp"
+                android:layout_marginLeft="20dp"
+                android:text="1月1日"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/activity_white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="20dp"
+                android:text="星期一"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/course_num_tv"
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="40dp"
+                        android:src="@drawable/course_white" />
+
+                    <TextView
+                        android:id="@+id/activities_num_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:text="4"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:text="4"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="28dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/activity_white" />
+
+                    <TextView
+                        android:id="@+id/course_num_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:text="4"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-4dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/homepage_fragment_content_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/homepage_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@color/colorPrimary"
+                    android:elevation="3dip"
+                    app:tabTextAppearance="@android:style/TextAppearance.Holo.Medium">
+
+
+                </android.support.design.widget.TabLayout>
+
+            </android.support.v4.view.ViewPager>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/homepage_cover_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-4dp">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/homepage_fragment_content_vp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/homepage_tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@color/colorPrimary"
-                android:elevation="3dip"
-                app:tabTextAppearance="@android:style/TextAppearance.Holo.Medium">
-
-
-            </android.support.design.widget.TabLayout>
-
-        </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/homepage_timeline_add_fab"
-            android:clickable="true"
+            android:id="@+id/homepage_add_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
             android:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
             android:elevation="3dip"
             android:src="@drawable/ic_add_white_36dp"
             app:fabSize="normal" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/homepage_add_activity_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/homepage_add_fab"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/activity"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/homepage_add_course_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/homepage_add_activity_fab"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/course"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="mini" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/homepage_add_activity_fab"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/homepage_add_course_fab"
+            android:background="@drawable/fab_text_bg"
+            android:elevation="2dip"
+            android:text="课程"
+            android:textColor="@color/colorDrawerText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/homepage_add_fab"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/homepage_add_course_fab"
+            android:background="@drawable/fab_text_bg"
+            android:elevation="2dip"
+            android:text="活动"
+            android:textColor="@color/colorDrawerText"
+            android:textSize="12sp" />
+
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

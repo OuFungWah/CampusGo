@@ -28,19 +28,19 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private List<DrawerItemBean> list;
 
-    public DrawerListAdapter(List<DrawerItemBean> list){
+    public DrawerListAdapter(List<DrawerItemBean> list) {
         this.list = list;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE.DIVIDER.ordinal()){
+        if (viewType == TYPE.DIVIDER.ordinal()) {
             View view = new View(parent.getContext());
             view.setBackgroundColor(parent.getResources().getColor(R.color.colorDivider));
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,3));
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 3));
             return new DrawerDividerViewHolder(view);
-        }else{
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_list_item,parent,false);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_list_item, parent, false);
             return new DrawerItemViewHolder(view);
         }
     }
@@ -48,20 +48,20 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(this);
-        if(holder instanceof DrawerItemViewHolder){
+        if (holder instanceof DrawerItemViewHolder) {
             DrawerItemBean bean = list.get(position);
-            ((DrawerItemViewHolder)holder).icon.setImageResource(bean.getIconRes());
-            ((DrawerItemViewHolder)holder).name.setText(bean.getName());
+            ((DrawerItemViewHolder) holder).icon.setImageResource(bean.getIconRes());
+            ((DrawerItemViewHolder) holder).name.setText(bean.getName());
+            holder.itemView.setOnClickListener(this);
         }
     }
 
     @Override
     public int getItemViewType(int position) {
         DrawerItemBean bean = list.get(position);
-        if(bean == null){
+        if (bean == null) {
             return TYPE.DIVIDER.ordinal();
-        }else{
+        } else {
             return TYPE.ITEM.ordinal();
         }
     }
@@ -74,7 +74,7 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onClick(View view) {
-        onItemClickListener.onItemClick(view,(int)view.getTag());
+        onItemClickListener.onItemClick(view, (int) view.getTag());
     }
 
     public OnItemClickListener getOnItemClickListener() {
@@ -85,8 +85,8 @@ public class DrawerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.onItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(View view,int position);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
 }

@@ -9,4 +9,5 @@
     <color name="colorTextBlack">#212121</color>
     <color name="colorTextSettingTitle">#004D40</color>
     <color name="colorSettingDivider">#004D3F</color>
+    <color name="colorAddFABTextBg">#EEEEEE</color>
 </resources>

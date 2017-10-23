@@ -14,8 +14,6 @@ import android.view.WindowManager;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.command.adapter.FragmentPageAdapter;
-import com.example.fungwah.campusgo.module.framework.activity.FrameWorkActivity;
-import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.fragment.BaseFragment;
 
 import java.util.ArrayList;
@@ -50,7 +48,7 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     protected void initView(View parent) {
         initFragmentList();
 
-        addFAB = findView(R.id.homepage_timeline_add_fab);
+        addFAB = findView(R.id.homepage_add_fab);
         tabLayout = findView(R.id.homepage_tab_layout);
         viewPager = findView(R.id.homepage_fragment_content_vp);
         // TODO: 2017/10/23  此处注意，Fragment 嵌套使用时，子 fragment 添加的是 ChildFragmentManager 而非 SupportFragmentManager ,回头了解一下
@@ -95,7 +93,7 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.homepage_timeline_add_fab:
+            case R.id.homepage_add_fab:
                 dialog.show();
                 break;
             default:

@@ -32,11 +32,12 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private ImageView nav_img;
     private DrawerLayout drawerLayout;
     private RecyclerView drawerRecyclerView;
+    private ImageView actionbarDrawDownImg;
     private FrameLayout frameLayout;
     private RecyclerView.LayoutManager layoutManager;
     private DrawerListAdapter drawerAdapter;
 
-//    private UnScrollViewPager viewPager;
+    //    private UnScrollViewPager viewPager;
     private List<BaseFragment> fragmentList = new ArrayList<>();
 //    private FragmentPageAdapter fragmentPageAdapter;
 
@@ -45,7 +46,6 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private List<DrawerItemBean> list = new ArrayList<>();
     private final static int ICON_RES_ARR[] = {R.drawable.home, R.drawable.timeline, R.drawable.discover, R.drawable.group, 0, R.drawable.settings, R.drawable.info};
     private final static String NAME_ARR[] = {"首页", "时间线", "发现", "组", null, "设置", "关于"};
-    private final static String TITLE_ARR[] = {"首页", "时间线", "发现", "组", "设置", "关于"};
 
 
     @Override
@@ -58,6 +58,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         drawerLayout = findView(R.id.drawer_layout);
         toolbar = findView(R.id.toolbar);
         title = findView(R.id.actionbar_title_tv);
+        actionbarDrawDownImg = findView(R.id.action_drawn_down_img);
         nav_img = findView(R.id.actionbar_left_img);
         frameLayout = findView(R.id.framework_fragment_fl);
         drawerRecyclerView = findView(R.id.drawer_rv);
@@ -65,7 +66,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         layoutManager = new LinearLayoutManager(FrameWorkActivity.this, LinearLayoutManager.VERTICAL, false);
         initDrawerItemList();
         initFragmentList();
-        addFragment(R.id.framework_fragment_fl,fragmentList.get(0));
+        addFragment(R.id.framework_fragment_fl, fragmentList.get(0));
 //        fragmentPageAdapter = new FragmentPageAdapter(fragmentList, getSupportFragmentManager());
         drawerAdapter = new DrawerListAdapter(list);
     }
@@ -93,6 +94,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void setView() {
 //        viewPager.setScrollable(false);
+
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
@@ -130,11 +132,17 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
-//
+
+    //
     protected void selectPage(int pageNum) {
         if (pageNum >= 0 && pageNum < fragmentList.size()) {
-            replaceFragment(R.id.framework_fragment_fl,fragmentList.get(pageNum));
-            title.setText(TITLE_ARR[pageNum]);
+            replaceFragment(R.id.framework_fragment_fl, fragmentList.get(pageNum));
+            title.setText(NAME_ARR[pageNum]);
+            if (NAME_ARR[pageNum].equals("时间线")) {
+                actionbarDrawDownImg.setVisibility(View.VISIBLE);
+            } else {
+                actionbarDrawDownImg.setVisibility(View.INVISIBLE);
+            }
         } else {
             ToastUtil.showShort("当前模块尚未完成");
         }
@@ -165,7 +173,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    public View getContentView(){
+    public View getContentView() {
         View view = findViewById(android.R.id.content);
         return view;
     }
