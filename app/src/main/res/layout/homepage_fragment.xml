@@ -55,7 +55,7 @@
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_marginRight="40dp"
-                    android:src="@drawable/course" />
+                    android:src="@drawable/course_white" />
 
                 <TextView
                     android:id="@+id/activities_num_tv"
@@ -78,7 +78,7 @@
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="14dp"
-                    android:src="@drawable/activity" />
+                    android:src="@drawable/activity_white" />
 
                 <TextView
                     android:id="@+id/course_num_tv"
@@ -119,6 +119,7 @@
         </android.support.v4.view.ViewPager>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/homepage_timeline_add_fab"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

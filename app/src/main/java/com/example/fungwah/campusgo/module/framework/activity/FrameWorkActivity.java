@@ -163,4 +163,10 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
             }
         }
     }
+
+    public View getContentView(){
+        View view = findViewById(android.R.id.content);
+        return view;
+    }
+
 }
