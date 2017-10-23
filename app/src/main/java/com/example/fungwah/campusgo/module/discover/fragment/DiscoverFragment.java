@@ -24,6 +24,11 @@ public class DiscoverFragment extends BaseFragment {
     private List<BaseFragment> fragmentList = new ArrayList<>();
 
     @Override
+    protected void initObject() {
+        initFragmentList();
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.discover_fragment;
     }
@@ -32,11 +37,11 @@ public class DiscoverFragment extends BaseFragment {
     protected void initView(View parent) {
         tabLayout = findView(R.id.discover_tab_layout);
         viewPager = findView(R.id.discover_vp);
-        initFragmentList();
         fragmentPagerAdapter = new FragmentPageAdapter(fragmentList, getActivity().getSupportFragmentManager());
     }
 
     private void initFragmentList() {
+        fragmentList.clear();
         fragmentList.add(new HotFragment());
         fragmentList.add(new NewFragment());
         fragmentList.add(new FocusFragment());

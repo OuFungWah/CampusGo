@@ -35,6 +35,11 @@ public class TimelineFragment extends BaseFragment {
     private FragmentTransaction fragmentTransaction;
 
     @Override
+    protected void initObject() {
+        initDateList();
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.timeline_fragment;
     }
@@ -44,7 +49,6 @@ public class TimelineFragment extends BaseFragment {
 
         fragmentManager = getActivity().getSupportFragmentManager();
 
-        initDateList();
         timelineDateAdapter = new TimelineDateAdapter(dateList);
         layoutManager = new GridLayoutManager(getContext(), 7, LinearLayoutManager.VERTICAL, false);
 

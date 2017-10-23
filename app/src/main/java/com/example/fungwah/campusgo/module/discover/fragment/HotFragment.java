@@ -11,6 +11,11 @@ import com.example.fungwahtools.fragment.BaseFragment;
 
 public class HotFragment extends BaseFragment {
     @Override
+    protected void initObject() {
+
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.discover_hot_fragment;
     }

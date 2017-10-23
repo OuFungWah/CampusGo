@@ -40,6 +40,8 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private List<BaseFragment> fragmentList = new ArrayList<>();
     private FragmentPageAdapter fragmentPageAdapter;
 
+    private long lastTime = 0L;
+
     private List<DrawerItemBean> list = new ArrayList<>();
     private final static int ICON_RES_ARR[] = {R.drawable.home, R.drawable.timeline, R.drawable.discover, R.drawable.group, 0, R.drawable.settings, R.drawable.info};
     private final static String NAME_ARR[] = {"首页", "时间线", "发现", "组", null, "设置", "关于"};
@@ -97,7 +99,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         drawerRecyclerView.setLayoutManager(layoutManager);
 
         viewPager.setAdapter(fragmentPageAdapter);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(0);
 
         drawerAdapter.setOnItemClickListener(this);
     }
@@ -145,7 +147,20 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
             selectPage(position);
             drawerLayout.closeDrawers();
         }
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        long nowTime = System.currentTimeMillis();
+        if (drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawers();
+        } else {
+            if (lastTime == 0 || (nowTime - lastTime) >= 2000) {
+                ToastUtil.showShort("再次点击退出程序");
+                lastTime = nowTime;
+            } else {
+                finish();
+            }
+        }
     }
 }

@@ -11,6 +11,11 @@ import com.example.fungwahtools.fragment.BaseFragment;
 
 public class ClubFragment extends BaseFragment {
     @Override
+    protected void initObject() {
+
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.discover_club_fragment;
     }

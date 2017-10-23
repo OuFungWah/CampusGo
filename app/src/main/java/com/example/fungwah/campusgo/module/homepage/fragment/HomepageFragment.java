@@ -24,6 +24,12 @@ public class HomepageFragment extends BaseFragment {
     private ViewPager viewPager;
     private FragmentPagerAdapter pagerAdapter;
     private List<BaseFragment> fragmentList = new ArrayList<>();
+
+    @Override
+    protected void initObject() {
+        initFragmentList();
+    }
+
     @Override
     protected int setLayoutId() {
         return R.layout.homepage_fragment;
@@ -31,13 +37,13 @@ public class HomepageFragment extends BaseFragment {
 
     @Override
     protected void initView(View parent) {
-        initFragmentList();
         tabLayout = findView(R.id.homepage_tab_layout);
         viewPager = findView(R.id.homepage_fragment_content_vp);
         pagerAdapter = new FragmentPageAdapter(fragmentList,((BaseActivity)getActivity()).getSupportFragmentManager());
     }
 
     private void initFragmentList() {
+        fragmentList.clear();
         fragmentList.add(new TimeLineFragment());
         fragmentList.add(new TimeLineFragment());
     }

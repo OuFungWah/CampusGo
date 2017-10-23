@@ -11,6 +11,11 @@ import com.example.fungwahtools.fragment.BaseFragment;
 
 public class FocusFragment extends BaseFragment {
     @Override
+    protected void initObject() {
+
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.discover_focus_fragment;
     }

@@ -24,16 +24,21 @@ public class TimeLineFragment extends BaseFragment {
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
+    protected void initObject() {
+        initTimeLineItemList();
+    }
+
+    @Override
     protected int setLayoutId() {
         return R.layout.homepage_timeline_fragment;
     }
 
     @Override
     protected void initView(View parent) {
-        initTimeLineItemList();
+
         recyclerView = findView(R.id.homepage_fragment_content_rv);
         timeLineListAdapter = new TimeLineListAdapter(timelineItemList);
-        layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
     }
 
     /**
