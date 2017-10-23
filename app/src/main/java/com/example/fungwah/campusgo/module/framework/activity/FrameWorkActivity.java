@@ -7,13 +7,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.module.discover.fragment.DiscoverFragment;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
-import com.example.fungwah.campusgo.command.adapter.FragmentPageAdapter;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerItemBean;
 import com.example.fungwah.campusgo.module.homepage.fragment.HomepageFragment;
 import com.example.fungwah.campusgo.module.setting.activity.SettingActivity;
@@ -21,7 +21,6 @@ import com.example.fungwah.campusgo.module.timeline.fragment.TimelineFragment;
 import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.fragment.BaseFragment;
 import com.example.fungwahtools.util.ToastUtil;
-import com.example.fungwahtools.widget.UnScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +32,13 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private ImageView nav_img;
     private DrawerLayout drawerLayout;
     private RecyclerView drawerRecyclerView;
+    private FrameLayout frameLayout;
     private RecyclerView.LayoutManager layoutManager;
     private DrawerListAdapter drawerAdapter;
 
-    private UnScrollViewPager viewPager;
+//    private UnScrollViewPager viewPager;
     private List<BaseFragment> fragmentList = new ArrayList<>();
-    private FragmentPageAdapter fragmentPageAdapter;
+//    private FragmentPageAdapter fragmentPageAdapter;
 
     private long lastTime = 0L;
 
@@ -59,13 +59,14 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         toolbar = findView(R.id.toolbar);
         title = findView(R.id.actionbar_title_tv);
         nav_img = findView(R.id.actionbar_left_img);
+        frameLayout = findView(R.id.framework_fragment_fl);
         drawerRecyclerView = findView(R.id.drawer_rv);
-        viewPager = findView(R.id.framework_vp);
+//        viewPager = findView(R.id.framework_vp);
         layoutManager = new LinearLayoutManager(FrameWorkActivity.this, LinearLayoutManager.VERTICAL, false);
         initDrawerItemList();
         initFragmentList();
-
-        fragmentPageAdapter = new FragmentPageAdapter(fragmentList, getSupportFragmentManager());
+        addFragment(R.id.framework_fragment_fl,fragmentList.get(0));
+//        fragmentPageAdapter = new FragmentPageAdapter(fragmentList, getSupportFragmentManager());
         drawerAdapter = new DrawerListAdapter(list);
     }
 
@@ -91,15 +92,15 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void setView() {
-        viewPager.setScrollable(false);
+//        viewPager.setScrollable(false);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         drawerRecyclerView.setAdapter(drawerAdapter);
         drawerRecyclerView.setLayoutManager(layoutManager);
 
-        viewPager.setAdapter(fragmentPageAdapter);
-        viewPager.setOffscreenPageLimit(0);
+//        viewPager.setAdapter(fragmentPageAdapter);
+//        viewPager.setOffscreenPageLimit(0);
 
         drawerAdapter.setOnItemClickListener(this);
     }
@@ -129,10 +130,10 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
-
+//
     protected void selectPage(int pageNum) {
         if (pageNum >= 0 && pageNum < fragmentList.size()) {
-            viewPager.setCurrentItem(pageNum);
+            replaceFragment(R.id.framework_fragment_fl,fragmentList.get(pageNum));
             title.setText(TITLE_ARR[pageNum]);
         } else {
             ToastUtil.showShort("当前模块尚未完成");

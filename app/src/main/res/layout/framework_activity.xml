@@ -21,10 +21,15 @@
 
             <!--<include layout="@layout/homepage_fragment"/>-->
 
-            <com.example.fungwahtools.widget.UnScrollViewPager
-                android:id="@+id/framework_vp"
+            <!--<com.example.fungwahtools.widget.UnScrollViewPager-->
+                <!--android:id="@+id/framework_vp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+
+            <FrameLayout
+                android:id="@+id/framework_fragment_fl"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"></FrameLayout>
 
         </LinearLayout>
 

@@ -3,6 +3,9 @@ package com.example.fungwahtools.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -74,6 +77,25 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void startActivity(Class c) {
         startActivity(new Intent(this, c));
+    }
+
+    /**
+     *
+     * @param id 当前Activity用于存放Fragment的控件资源
+     * @param fragment
+     */
+    protected void replaceFragment(int id, Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(id,fragment);
+        fragmentTransaction.commit();
+    }
+
+    protected void addFragment(int id, Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(id,fragment);
+        fragmentTransaction.commit();
     }
 
 }
