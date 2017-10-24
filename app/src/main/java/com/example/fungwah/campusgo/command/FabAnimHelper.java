@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.example.fungwahtools.activity.BaseActivity;
  * Created by FungWah on 2017/10/24.
  */
 
-public class FabAnimHelper {
+public class FabAnimHelper implements View.OnTouchListener {
 
     private static final long ANIM_TIME = 300L;
     private boolean running = false;
@@ -52,6 +53,7 @@ public class FabAnimHelper {
 
     /**
      * 构造函数
+     *
      * @param parent
      */
     public FabAnimHelper(View parent) {
@@ -60,6 +62,7 @@ public class FabAnimHelper {
 
     /**
      * 构造函数
+     *
      * @param parent
      * @param animTime
      */
@@ -142,6 +145,7 @@ public class FabAnimHelper {
     }
 
     protected void visiableFab() {
+        coverRl.setOnTouchListener(this);
         coverRl.setVisibility(View.VISIBLE);
         activityAddFAB.setVisibility(View.VISIBLE);
         courseAddFAB.setVisibility(View.VISIBLE);
@@ -150,6 +154,7 @@ public class FabAnimHelper {
     }
 
     protected void inVisiableFab() {
+        coverRl.setOnTouchListener(null);
         coverRl.setVisibility(View.INVISIBLE);
         activityAddFAB.setVisibility(View.INVISIBLE);
         courseAddFAB.setVisibility(View.INVISIBLE);
@@ -163,6 +168,11 @@ public class FabAnimHelper {
 
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        return true;
     }
 
     private class AppearListener implements Animator.AnimatorListener {
