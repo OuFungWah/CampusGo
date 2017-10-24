@@ -64,7 +64,7 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     private void initFragmentList() {
         fragmentList.clear();
         fragmentList.add(new TimeLineFragment());
-        fragmentList.add(new TimeLineFragment());
+//        fragmentList.add(new TimeLineFragment());
     }
 
     @Override
@@ -76,7 +76,8 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         tabLayout.setTabTextColors(Color.WHITE, Color.WHITE);
         tabLayout.getTabAt(0).setText("时间线");
-        tabLayout.getTabAt(1).setText("动态");
+        //屏蔽“动态”的入口
+//        tabLayout.getTabAt(1).setText("动态");
 
     }
 

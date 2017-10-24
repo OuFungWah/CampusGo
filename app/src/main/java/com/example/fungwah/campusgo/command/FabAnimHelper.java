@@ -162,6 +162,10 @@ public class FabAnimHelper implements View.OnTouchListener {
         courseTv.setVisibility(View.INVISIBLE);
     }
 
+    public boolean isFabShowing() {
+        return coverRl.getVisibility() == View.VISIBLE;
+    }
+
     public boolean isRunning() {
         return running;
     }
