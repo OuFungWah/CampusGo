@@ -10,4 +10,5 @@
     <color name="colorTextSettingTitle">#004D40</color>
     <color name="colorSettingDivider">#004D3F</color>
     <color name="colorAddFABTextBg">#EEEEEE</color>
+    <color name="colorCoverColor">#009688</color>
 </resources>

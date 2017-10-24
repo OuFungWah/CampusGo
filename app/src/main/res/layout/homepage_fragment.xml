@@ -130,6 +130,11 @@
     <RelativeLayout
         android:id="@+id/homepage_cover_rl"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorCoverColor" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.FloatingActionButton
@@ -171,6 +176,7 @@
             app:fabSize="mini" />
 
         <TextView
+            android:id="@+id/homepage_course_fab_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/homepage_add_activity_fab"
@@ -184,6 +190,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/homepage_activity_fab_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/homepage_add_fab"
