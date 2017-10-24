@@ -75,7 +75,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     private void initFragmentList() {
         fragmentList.add(new HomepageFragment());
         fragmentList.add(new TimelineFragment());
-        fragmentList.add(new DiscoverFragment());
+//        fragmentList.add(new DiscoverFragment());
     }
 
     //初始化侧拉栏列表

@@ -38,12 +38,6 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     private TextView courseTv;
     private TextView activityTv;
 
-    private boolean isRunning = false;
-
-
-//    private Dialog dialog;
-//    private View dialogView;
-
     @Override
     protected void initObject() {
     }
@@ -65,9 +59,6 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
         viewPager = findView(R.id.homepage_fragment_content_vp);
         // TODO: 2017/10/23  此处注意，Fragment 嵌套使用时，子 fragment 添加的是 ChildFragmentManager 而非 SupportFragmentManager ,回头了解一下
         pagerAdapter = new FragmentPageAdapter(fragmentList, getChildFragmentManager());
-
-//        dialog = new Dialog(getContext(), R.style.MyDialog);
-//        dialogView = LayoutInflater.from(getContext()).inflate(R.layout.include_add_fab_layout, null);
     }
 
     private void initFragmentList() {
@@ -78,14 +69,6 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void setView() {
-//        dialogView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//        dialog.setContentView(dialogView);
-
-        //全屏显示Dialog
-//        WindowManager windowManager = dialog.getWindow().getWindowManager();
-//        Display display = windowManager.getDefaultDisplay();
-//        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-//        params.width = display.getWidth();
 
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -106,14 +89,6 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_fab:
-//                dialog.show();
-//                if (!isRunning) {
-//                    if (coverRl.getVisibility() == View.INVISIBLE) {
-//                        appearAnim();
-//                    } else {
-//                        disappearAnim();
-//                    }
-//                }
                 fabAnimHelper.startAnimation();
                 break;
             default:
