@@ -1,49 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/include_fab_parent_rl"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00000000"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/cover_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/colorCoverColor" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_course_fab"
+            android:id="@+id/add_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@android:color/white"
-            android:src="@drawable/course"
-            app:fabSize="mini" />
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:elevation="3dip"
+            android:src="@drawable/ic_add_white_36dp"
+            app:fabSize="normal" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_activity_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/white"
+            android:layout_above="@id/add_fab"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
             android:src="@drawable/activity"
+            app:backgroundTint="@android:color/white"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/main_add_fab"
+            android:id="@+id/add_course_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:src="@drawable/ic_add_white_36dp"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabSize="normal" />
+            android:layout_above="@id/add_activity_fab"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/course"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="mini" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/course_fab_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/add_activity_fab"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/add_course_fab"
+            android:background="@drawable/fab_text_bg"
+            android:elevation="2dip"
+            android:text="课程"
+            android:textColor="@color/colorDrawerText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/activity_fab_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/add_fab"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/add_course_fab"
+            android:background="@drawable/fab_text_bg"
+            android:elevation="2dip"
+            android:text="活动"
+            android:textColor="@color/colorDrawerText"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

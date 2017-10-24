@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.fungwah.campusgo.R;
+import com.example.fungwah.campusgo.command.FabAnimHelper;
 import com.example.fungwah.campusgo.module.homepage.fragment.TimeLineFragment;
 import com.example.fungwah.campusgo.module.timeline.adapter.TimelineDateAdapter;
 import com.example.fungwahtools.fragment.BaseFragment;
@@ -21,11 +22,11 @@ import java.util.List;
  * Created by FungWah on 2017/10/21.
  */
 
-public class TimelineFragment extends BaseFragment {
+public class TimelineFragment extends BaseFragment implements View.OnClickListener {
 
     private FrameLayout frameLayout;
     private RecyclerView recyclerView;
-    private FloatingActionButton addFAB;
+    private FabAnimHelper fabAnimHelper;
 
     private TimelineDateAdapter timelineDateAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -48,13 +49,13 @@ public class TimelineFragment extends BaseFragment {
     protected void initView(View parent) {
 
         fragmentManager = getActivity().getSupportFragmentManager();
+        fabAnimHelper = new FabAnimHelper(parent, 300);
 
         timelineDateAdapter = new TimelineDateAdapter(dateList);
         layoutManager = new GridLayoutManager(getContext(), 7, LinearLayoutManager.VERTICAL, false);
 
         recyclerView = findView(R.id.timeline_rv);
         frameLayout = findView(R.id.timeline_content_fragment_fl);
-        addFAB = findView(R.id.timeline_add_fab);
     }
 
     private void initDateList() {
@@ -72,7 +73,7 @@ public class TimelineFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        fabAnimHelper.initFabClickListener(this);
     }
 
     /**
@@ -86,4 +87,12 @@ public class TimelineFragment extends BaseFragment {
         return flag;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.add_fab:
+                fabAnimHelper.startAnimation();
+                break;
+        }
+    }
 }
