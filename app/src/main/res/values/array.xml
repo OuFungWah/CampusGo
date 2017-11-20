@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="classroom_arr">
+        <item>A1 101</item>
+        <item>A1 102</item>
+        <item>A1 103</item>
+        <item>A1 104</item>
+        <item>A1 105</item>
+        <item>A1 106</item>
+        <item>A1 107</item>
+        <item>A1 108</item>
+        <item>A1 109</item>
+        <item>A1 110</item>
+        <item>A1 201</item>
+        <item>A1 202</item>
+        <item>A1 203</item>
+        <item>A1 204</item>
+        <item>A1 205</item>
+        <item>A1 206</item>
+        <item>A1 207</item>
+        <item>A1 208</item>
+        <item>A1 209</item>
+        <item>A1 210</item>
+        <item>A1 301</item>
+        <item>A1 302</item>
+        <item>A1 303</item>
+        <item>A1 304</item>
+        <item>A1 305</item>
+        <item>A1 306</item>
+        <item>A1 307</item>
+        <item>A1 308</item>
+        <item>A1 309</item>
+        <item>A1 310</item>
+        <item>A1 401</item>
+        <item>A1 402</item>
+        <item>A1 403</item>
+        <item>A1 404</item>
+        <item>A1 405</item>
+        <item>A1 406</item>
+        <item>A1 407</item>
+        <item>A1 408</item>
+        <item>A1 409</item>
+        <item>A1 410</item>
+        <item>A2 101</item>
+        <item>A2 102</item>
+        <item>A2 103</item>
+        <item>A2 104</item>
+        <item>A2 105</item>
+        <item>A2 106</item>
+        <item>A2 107</item>
+        <item>A2 108</item>
+        <item>A2 109</item>
+        <item>A2 110</item>
+        <item>A2 201</item>
+        <item>A2 202</item>
+        <item>A2 203</item>
+        <item>A2 204</item>
+        <item>A2 205</item>
+        <item>A2 206</item>
+        <item>A2 207</item>
+        <item>A2 208</item>
+        <item>A2 209</item>
+        <item>A2 210</item>
+        <item>A2 301</item>
+        <item>A2 302</item>
+        <item>A2 303</item>
+        <item>A2 304</item>
+        <item>A2 305</item>
+        <item>A2 306</item>
+        <item>A2 307</item>
+        <item>A2 308</item>
+        <item>A2 309</item>
+        <item>A2 310</item>
+        <item>A2 401</item>
+        <item>A2 402</item>
+        <item>A2 403</item>
+        <item>A2 404</item>
+        <item>A2 405</item>
+        <item>A2 406</item>
+        <item>A2 407</item>
+        <item>A2 408</item>
+        <item>A2 409</item>
+        <item>A2 410</item>
+        <item>A3 101</item>
+        <item>A3 102</item>
+        <item>A3 103</item>
+        <item>A3 104</item>
+        <item>A3 105</item>
+        <item>A3 106</item>
+        <item>A3 107</item>
+        <item>A3 108</item>
+        <item>A3 109</item>
+        <item>A3 110</item>
+        <item>A3 201</item>
+        <item>A3 202</item>
+        <item>A3 203</item>
+        <item>A3 204</item>
+        <item>A3 205</item>
+        <item>A3 206</item>
+        <item>A3 207</item>
+        <item>A3 208</item>
+        <item>A3 209</item>
+        <item>A3 210</item>
+        <item>A3 301</item>
+        <item>A3 302</item>
+        <item>A3 303</item>
+        <item>A3 304</item>
+        <item>A3 305</item>
+        <item>A3 306</item>
+        <item>A3 307</item>
+        <item>A3 308</item>
+        <item>A3 309</item>
+        <item>A3 310</item>
+        <item>A3 401</item>
+        <item>A3 402</item>
+        <item>A3 403</item>
+        <item>A3 404</item>
+        <item>A3 405</item>
+        <item>A3 406</item>
+        <item>A3 407</item>
+        <item>A3 408</item>
+        <item>A3 409</item>
+        <item>A3 410</item>
+        <item>A4 101</item>
+        <item>A4 102</item>
+        <item>A4 103</item>
+        <item>A4 104</item>
+        <item>A4 105</item>
+        <item>A4 106</item>
+        <item>A4 107</item>
+        <item>A4 108</item>
+        <item>A4 109</item>
+        <item>A4 110</item>
+        <item>A4 201</item>
+        <item>A4 202</item>
+        <item>A4 203</item>
+        <item>A4 204</item>
+        <item>A4 205</item>
+        <item>A4 206</item>
+        <item>A4 207</item>
+        <item>A4 208</item>
+        <item>A4 209</item>
+        <item>A4 210</item>
+        <item>A4 301</item>
+        <item>A4 302</item>
+        <item>A4 303</item>
+        <item>A4 304</item>
+        <item>A4 305</item>
+        <item>A4 306</item>
+        <item>A4 307</item>
+        <item>A4 308</item>
+        <item>A4 309</item>
+        <item>A4 310</item>
+        <item>A4 401</item>
+        <item>A4 402</item>
+        <item>A4 403</item>
+        <item>A4 404</item>
+        <item>A4 405</item>
+        <item>A4 406</item>
+        <item>A4 407</item>
+        <item>A4 408</item>
+        <item>A4 409</item>
+        <item>A4 410</item>
+        <item>A4 501</item>
+        <item>A4 502</item>
+        <item>A4 503</item>
+        <item>A4 504</item>
+        <item>A4 505</item>
+        <item>A4 506</item>
+        <item>A4 507</item>
+        <item>A4 508</item>
+        <item>A4 509</item>
+        <item>A4 510</item>
+        <item>A5 101</item>
+        <item>A5 102</item>
+        <item>A5 103</item>
+        <item>A5 104</item>
+        <item>A5 105</item>
+        <item>A5 106</item>
+        <item>A5 107</item>
+        <item>A5 108</item>
+        <item>A5 109</item>
+        <item>A5 110</item>
+        <item>A5 111</item>
+        <item>A5 201</item>
+        <item>A5 202</item>
+        <item>A5 203</item>
+        <item>A5 204</item>
+        <item>A5 205</item>
+        <item>A5 206</item>
+        <item>A5 301</item>
+        <item>A5 302</item>
+        <item>A5 303</item>
+        <item>A5 304</item>
+        <item>A5 305</item>
+        <item>A5 306</item>
+        <item>A5 401</item>
+        <item>A5 402</item>
+        <item>A5 403</item>
+        <item>A5 404</item>
+        <item>A5 405</item>
+        <item>A5 406</item>
+    </string-array>
+    <string-array name="day_arr">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+    <string-array name="week_arr">
+        <item>第1周</item>
+        <item>第2周</item>
+        <item>第3周</item>
+        <item>第4周</item>
+        <item>第5周</item>
+        <item>第6周</item>
+        <item>第7周</item>
+        <item>第8周</item>
+        <item>第9周</item>
+        <item>第10周</item>
+        <item>第11周</item>
+        <item>第12周</item>
+        <item>第13周</item>
+        <item>第14周</item>
+        <item>第15周</item>
+        <item>第16周</item>
+        <item>第17周</item>
+        <item>第18周</item>
+        <item>第19周</item>
+        <item>第20周</item>
+    </string-array>
+    <string-array name="course_start_time_arr">
+        <item>08:40</item>
+        <item>10:25</item>
+        <item>14:15</item>
+        <item>16:00</item>
+        <item>18:20</item>
+        <item>19:00</item>
+    </string-array>
+    <string-array name="course_end_time_arr">
+        <item>10:15</item>
+        <item>12:00</item>
+        <item>15:50</item>
+        <item>17:20</item>
+        <item>19:40</item>
+        <item>21:00</item>
+    </string-array>
+
+</resources>

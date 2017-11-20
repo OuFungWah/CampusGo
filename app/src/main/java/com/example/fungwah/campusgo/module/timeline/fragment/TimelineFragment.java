@@ -1,6 +1,5 @@
 package com.example.fungwah.campusgo.module.timeline.fragment;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,7 +10,8 @@ import android.widget.FrameLayout;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.command.FabAnimHelper;
-import com.example.fungwah.campusgo.module.homepage.fragment.TimeLineFragment;
+import com.example.fungwah.campusgo.module.timeline.activity.AddActivitiesActivity;
+import com.example.fungwah.campusgo.module.timeline.activity.AddCourseActivity;
 import com.example.fungwah.campusgo.module.timeline.adapter.TimelineDateAdapter;
 import com.example.fungwahtools.fragment.BaseFragment;
 
@@ -59,6 +59,7 @@ public class TimelineFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void initDateList() {
+        dateList.clear();
         for (int i = 20; i < 27; i++) {
             dateList.add("" + i);
         }
@@ -66,7 +67,7 @@ public class TimelineFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void setView() {
-        changeFragment(new TimeLineFragment());
+        changeFragment(new TimeLineListFragment());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(timelineDateAdapter);
     }
@@ -91,6 +92,14 @@ public class TimelineFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_fab:
+                fabAnimHelper.startAnimation();
+                break;
+            case R.id.add_course_fab:
+                startActivity(AddCourseActivity.class);
+                fabAnimHelper.startAnimation();
+                break;
+            case R.id.add_activity_fab:
+                startActivity(AddActivitiesActivity.class);
                 fabAnimHelper.startAnimation();
                 break;
         }

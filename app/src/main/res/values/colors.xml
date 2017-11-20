@@ -11,4 +11,6 @@
     <color name="colorSettingDivider">#004D3F</color>
     <color name="colorAddFABTextBg">#EEEEEE</color>
     <color name="colorCoverColor">#009688</color>
+    <color name="colorOringeText">#FF5722</color>
+    <color name="colorTextGrayText">#9E9E9E</color>
 </resources>

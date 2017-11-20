@@ -5,7 +5,7 @@ version = '1.0.1' // Change this to match your version number
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 15

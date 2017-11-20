@@ -36,6 +36,7 @@
                 android:textSize="30sp" />
 
             <TextView
+                android:id="@+id/homepage_day_of_week_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -62,7 +63,7 @@
                         android:src="@drawable/course_white" />
 
                     <TextView
-                        android:id="@+id/activities_num_tv"
+                        android:id="@+id/course_num_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="24dp"
@@ -85,7 +86,7 @@
                         android:src="@drawable/activity_white" />
 
                     <TextView
-                        android:id="@+id/course_num_tv"
+                        android:id="@+id/activities_num_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="24dp"

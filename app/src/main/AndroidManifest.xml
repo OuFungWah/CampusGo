@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.setting.activity.SettingActivity"/>
+        <activity android:name=".module.setting.activity.SettingActivity" />
+        <activity android:name=".module.timeline.activity.AddCourseActivity" />
+        <activity android:name=".module.timeline.activity.AddActivitiesActivity"/>
     </application>
 
 </manifest>

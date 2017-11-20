@@ -5,4 +5,7 @@ package com.example.fungwah.campusgo.module.homepage.bean;
  */
 
 public class TimeLineItem {
+
+
+
 }
