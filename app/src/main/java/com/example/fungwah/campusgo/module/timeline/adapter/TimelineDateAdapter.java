@@ -53,9 +53,9 @@ public class TimelineDateAdapter extends RecyclerView.Adapter implements View.On
         } else {
             ((DateItemViewHolder) holder).dateTv.setText(list.get(position).getDay()+"");
             ((DateItemViewHolder) holder).indicatorV.setVisibility(list.get(position).isSelected() ? View.VISIBLE : View.INVISIBLE);
+            holder.itemView.setTag(position);
+            holder.itemView.setOnClickListener(this);
         }
-        holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(this);
     }
 
     @Override
