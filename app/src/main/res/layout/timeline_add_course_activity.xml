@@ -38,7 +38,7 @@
                     <EditText
                         android:id="@+id/course_name_et"
                         android:maxLength="15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="7dp"
