@@ -56,7 +56,7 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
     private int day = calendar.get(Calendar.DAY_OF_MONTH);
     private int hour = calendar.get(Calendar.HOUR_OF_DAY);
     private int minute = calendar.get(Calendar.MINUTE);
-    private String date = year + "." + month + "." + day;
+    private String date = year + "." + (month+1)  + "." + day;
     private String time;
 
     private String activityNameStr;
@@ -68,7 +68,7 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case SET_DATE:
-                    date = year + "." + month + "." + day + "";
+                    date = year + "." + (month+1) + "." + day + "";
                     datePickerBtn.setText(date);
                     break;
                 case SET_TIME:

@@ -1,6 +1,7 @@
 package com.example.fungwah.campusgo.module.timeline.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.module.timeline.bean.DateItemViewHolder;
 import com.example.fungwah.campusgo.module.timeline.bean.DateTitleViewHolder;
+import com.example.fungwah.campusgo.module.timeline.bean.TagDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +20,18 @@ import java.util.List;
 
 public class TimelineDateAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
+    private static final String TAG = "TimelineDateAdapter";
+
     enum TYPE {
         TITLE,
         DATE
     }
 
-    private List<String> list = new ArrayList<>();
-    private String strArr[] = new String[]{"SUN", "MON", "TUE", "WEN", "THU", "FIR", "STA"};
+    private List<TagDate> list = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public TimelineDateAdapter(List<String> list) {
-        for (int i = 0; i < strArr.length; i++) {
-            this.list.add(strArr[i]);
-        }
-        this.list.addAll(list);
+    public TimelineDateAdapter(List<TagDate> list) {
+        this.list = list;
     }
 
     @Override
@@ -49,9 +49,10 @@ public class TimelineDateAdapter extends RecyclerView.Adapter implements View.On
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof DateTitleViewHolder) {
-            ((DateTitleViewHolder) holder).titleTv.setText(list.get(position));
+            ((DateTitleViewHolder) holder).titleTv.setText(list.get(position).getTitle());
         } else {
-            ((DateItemViewHolder) holder).dateTv.setText(list.get(position));
+            ((DateItemViewHolder) holder).dateTv.setText(list.get(position).getDay()+"");
+            ((DateItemViewHolder) holder).indicatorV.setVisibility(list.get(position).isSelected() ? View.VISIBLE : View.INVISIBLE);
         }
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);
@@ -59,6 +60,7 @@ public class TimelineDateAdapter extends RecyclerView.Adapter implements View.On
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount:   list.size() = "+list.size());
         return list.size();
     }
 
@@ -87,7 +89,7 @@ public class TimelineDateAdapter extends RecyclerView.Adapter implements View.On
         this.onItemClickListener = onItemClickListener;
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 

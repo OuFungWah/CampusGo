@@ -46,7 +46,7 @@ public class HomepageFragment extends BaseFragment implements View.OnClickListen
     private int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
     private int hour = calendar.get(Calendar.HOUR_OF_DAY);
     private int minute = calendar.get(Calendar.MINUTE);
-    private String date =  month + "月" + day + "日";
+    private String date =  (month+1) + "月" + day + "日";
 
     private FragmentPagerAdapter pagerAdapter;
     private List<BaseFragment> fragmentList = new ArrayList<>();
