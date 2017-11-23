@@ -213,15 +213,17 @@ public class TimelineFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onItemClick(View view, int position) {
-        TagDate selectedDate = dateList.get(position);
-        selectedDay = selectedDate.getDay();
-        Date date = new Date(selectedDate.getYear() - 1900, selectedDate.getMonth(), selectedDate.getDay(), 0, 0);
-        ((FrameWorkActivity)getActivity()).setDate(date);
-        calendar.setTime(date);
-        initCalendar();
-        initDateList();
-        onRefreshListener.onRefresh(date);
-        handler.sendEmptyMessage(REFRESH);
+        if(position>=7){
+            TagDate selectedDate = dateList.get(position);
+            selectedDay = selectedDate.getDay();
+            Date date = new Date(selectedDate.getYear() - 1900, selectedDate.getMonth(), selectedDate.getDay(), 0, 0);
+            ((FrameWorkActivity)getActivity()).setDate(date);
+            calendar.setTime(date);
+            initCalendar();
+            initDateList();
+            onRefreshListener.onRefresh(date);
+            handler.sendEmptyMessage(REFRESH);
+        }
     }
 
     /**
