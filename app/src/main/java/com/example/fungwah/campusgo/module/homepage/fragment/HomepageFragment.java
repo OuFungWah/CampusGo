@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.FabAnimHelper;
-import com.example.fungwah.campusgo.command.adapter.FragmentPageAdapter;
-import com.example.fungwah.campusgo.command.database.DataTools;
+import com.example.fungwah.campusgo.common.FabAnimHelper;
+import com.example.fungwah.campusgo.common.adapter.FragmentPageAdapter;
+import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwah.campusgo.module.timeline.activity.AddActivitiesActivity;
 import com.example.fungwah.campusgo.module.timeline.activity.AddCourseActivity;
 import com.example.fungwah.campusgo.module.timeline.fragment.TimeLineListFragment;

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/college_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="177"></RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="460"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp"
+                android:text="学院"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+
+                android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="18dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:elevation="3dip">
+
+                <RadioGroup
+                    android:id="@+id/guide_college_rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:divider="@color/colorDrawerText"
+                    android:orientation="vertical">
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/computer_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="true"-->
+                        <!--android:text="计算机工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/car_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="汽车与交通工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/machine_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="机械工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/electronic_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="电子信息工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/electric_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="电气工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/economic_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="经济学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/management_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="管理学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/foreign_language_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="外国语学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/jewelry_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="珠宝学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/architecture_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="建筑学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/civil_engineering_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="土木工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/international_business_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="国际商学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/zte_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="中兴通信工程学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/international_engineering_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="国际工程师学院" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/ie_college_rb"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="56dp"-->
+                        <!--android:checked="false"-->
+                        <!--android:text="创新创业教育学院" />-->
+
+                </RadioGroup>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:elevation="4dip">
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/college_last_step_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="完成"-->
+                    <!--android:textColor="@color/colorTextBlack"-->
+                    <!--android:textStyle="bold" />-->
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_chevron_left_black_24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/college_next_step_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="下一步"
+                        android:textColor="@color/colorTextBlack"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -11,8 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.bean.Events;
-import com.example.fungwah.campusgo.command.database.DataTools;
+import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.util.ToastUtil;
 

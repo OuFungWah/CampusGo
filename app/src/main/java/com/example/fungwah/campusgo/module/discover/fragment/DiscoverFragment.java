@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.adapter.FragmentPageAdapter;
+import com.example.fungwah.campusgo.common.adapter.FragmentPageAdapter;
 import com.example.fungwahtools.fragment.BaseFragment;
 
 import java.util.ArrayList;

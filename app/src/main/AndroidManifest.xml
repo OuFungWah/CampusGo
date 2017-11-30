@@ -11,15 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".module.framework.activity.FrameWorkActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".module.setting.activity.SettingActivity" />
+        <activity android:name=".module.timeline.activity.AddCourseActivity" />
+        <activity android:name=".module.timeline.activity.AddActivitiesActivity"/>
+        <activity android:name=".module.guide.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.setting.activity.SettingActivity" />
-        <activity android:name=".module.timeline.activity.AddCourseActivity" />
-        <activity android:name=".module.timeline.activity.AddActivitiesActivity"/>
+        <activity android:name=".module.guide.activity.GuideBaseInfoActivity"/>
+        <activity android:name=".module.guide.activity.CollegeChooseActivity"/>
+        <activity android:name=".module.guide.activity.GuideMajorClassActivity"/>
+        <activity android:name=".module.guide.activity.LoginActivity"/>
     </application>
 
 </manifest>

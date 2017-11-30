@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.bean.Events;
+import com.example.fungwah.campusgo.common.bean.Events;
 import com.example.fungwah.campusgo.module.homepage.bean.TimeLineViewHolder;
 
 import java.util.List;

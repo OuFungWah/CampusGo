@@ -1,9 +1,7 @@
 package com.example.fungwah.campusgo.module.timeline.fragment;
 
-import android.app.DatePickerDialog;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,10 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.DateHelper;
-import com.example.fungwah.campusgo.command.FabAnimHelper;
-import com.example.fungwah.campusgo.command.database.DataTools;
-import com.example.fungwah.campusgo.command.picker.DatePickerFragment;
+import com.example.fungwah.campusgo.common.FabAnimHelper;
+import com.example.fungwah.campusgo.common.picker.DatePickerFragment;
 import com.example.fungwah.campusgo.module.framework.activity.FrameWorkActivity;
 import com.example.fungwah.campusgo.module.timeline.OnRefreshListener;
 import com.example.fungwah.campusgo.module.timeline.activity.AddActivitiesActivity;

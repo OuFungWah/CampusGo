@@ -1,6 +1,5 @@
 package com.example.fungwah.campusgo.module.framework.activity;
 
-import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.DateHelper;
-import com.example.fungwah.campusgo.command.picker.DatePickerFragment;
-import com.example.fungwah.campusgo.module.discover.fragment.DiscoverFragment;
+import com.example.fungwah.campusgo.common.DateHelper;
+import com.example.fungwah.campusgo.common.picker.DatePickerFragment;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerItemBean;
 import com.example.fungwah.campusgo.module.homepage.fragment.HomepageFragment;

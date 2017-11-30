@@ -2,7 +2,7 @@ package com.example.fungwah.campusgo.application;
 
 import android.app.Application;
 
-import com.example.fungwah.campusgo.command.database.dao.CampusDao;
+import com.example.fungwah.campusgo.common.database.dao.CampusDao;
 import com.example.fungwahtools.util.ToastUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 

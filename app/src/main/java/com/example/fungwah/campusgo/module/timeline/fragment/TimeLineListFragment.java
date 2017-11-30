@@ -11,10 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.command.bean.Events;
-import com.example.fungwah.campusgo.command.database.DataTools;
-import com.example.fungwah.campusgo.command.database.dao.CampusDao;
-import com.example.fungwah.campusgo.command.database.helper.CampusHelper;
+import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.common.database.DataTools;
+import com.example.fungwah.campusgo.common.database.dao.CampusDao;
+import com.example.fungwah.campusgo.common.database.helper.CampusHelper;
 import com.example.fungwah.campusgo.module.timeline.OnRefreshListener;
 import com.example.fungwah.campusgo.module.timeline.adapter.TimeLineListAdapter;
 import com.example.fungwahtools.fragment.BaseFragment;
@@ -115,6 +115,19 @@ public class TimeLineListFragment extends BaseFragment implements AdapterView.On
         createDialog(position);
         return false;
     }
+    private void refreshData(){
+
+        initCalendar();
+        list = DataTools.selectEventsByDate(year,month,day,DataTools.calendarDOWToNum(dayOfWeek));
+        eventsList.clear();
+        eventsList.addAll(DataTools.changeIntoEvent(list));
+        Log.d(TAG, "onResume: eventsList.size() = "+(eventsList==null?-1:eventsList.size()));
+        handler.sendEmptyMessage(GET_DATA);
+        List<Map> list = CampusDao.getInstance().select(null,null);
+        for(int i  = 0;i<list.size();i++){
+            Log.d(TAG, "refreshData: 第"+i+"个    year="+list.get(i).get("year")+"    month="+list.get(i).get("month")+"  day="+list.get(i).get("day"));
+        }
+    }
 
     private void createDialog(final int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -135,19 +148,6 @@ public class TimeLineListFragment extends BaseFragment implements AdapterView.On
             }
         });
         builder.create().show();
-    }
-
-    private void refreshData(){
-        initCalendar();
-        list = DataTools.selectEventsByDate(year,month,day,DataTools.calendarDOWToNum(dayOfWeek));
-        eventsList.clear();
-        eventsList.addAll(DataTools.changeIntoEvent(list));
-        Log.d(TAG, "onResume: eventsList.size() = "+(eventsList==null?-1:eventsList.size()));
-        handler.sendEmptyMessage(GET_DATA);
-        List<Map> list = CampusDao.getInstance().select(null,null);
-        for(int i  = 0;i<list.size();i++){
-            Log.d(TAG, "refreshData: 第"+i+"个    year="+list.get(i).get("year")+"    month="+list.get(i).get("month")+"  day="+list.get(i).get("day"));
-        }
     }
 
     @Override
