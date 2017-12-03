@@ -67,7 +67,7 @@ public class DataTools {
         boolean flag = false;
         CampusDao.useTable(CampusHelper.TABLE_USERS);
         ContentValues contentValues = new ContentValues();
-        contentValues.put("num", user.getSno());
+        contentValues.put("num", user.getNum());
         contentValues.put("name", user.getName());
         contentValues.put("password", user.getPassword());
         contentValues.put("sex", user.getSex());

@@ -104,12 +104,12 @@ public class GuideBaseInfoActivity extends BaseActivity implements View.OnClickL
             ToastUtil.showShort("前后密码不一致");
         } else {
             user.setName(name);
-            user.setSno(sno);
+            user.setNum(sno);
             user.setSex(sexy);
             user.setGrade(grade);
             user.setPassword(password);
             user.setPasswordConfirm(passwordConfirm);
-            user.setTellphone(phone);
+            user.setTelephone(phone);
             Config.user = user;
             startActivity(CollegeChooseActivity.class);
         }

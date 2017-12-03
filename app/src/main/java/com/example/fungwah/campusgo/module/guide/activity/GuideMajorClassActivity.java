@@ -16,6 +16,8 @@ import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.util.ToastUtil;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * Created by FungWah on 2017/11/25.
  */
@@ -298,6 +300,7 @@ public class GuideMajorClassActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initView() {
+        Bmob.initialize(this,Config.APP_KEY);
         bundle = getIntent().getExtras();
         collegeNum = bundle.getInt("collegeNum");
         Log.d(TAG, "initView: collegeNum = "+collegeNum);

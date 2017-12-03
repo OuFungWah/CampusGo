@@ -7,12 +7,12 @@ package com.example.fungwah.campusgo.common.bean;
 public class User {
 
     private String name;
-    private String sno;
+    private String num;
     private String sex;
     private String grade;
     private String password;
     private String passwordConfirm;
-    private String tellphone;
+    private String telephone;
     private String college;
     private String maiorClass;
 
@@ -21,12 +21,12 @@ public class User {
 
     public User(String name, String sno, String sexy, String grade, String password, String passwordConfirm, String tellphone, String college, String maiorClass) {
         this.name = name;
-        this.sno = sno;
+        this.num = sno;
         this.sex = sexy;
         this.grade = grade;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
-        this.tellphone = tellphone;
+        this.telephone = tellphone;
         this.college = college;
         this.maiorClass = maiorClass;
     }
@@ -39,12 +39,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSno() {
-        return sno;
+    public String getNum() {
+        return num;
     }
 
-    public void setSno(String sno) {
-        this.sno = sno;
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public String getSex() {
@@ -79,12 +79,12 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public String getTellphone() {
-        return tellphone;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setTellphone(String tellphone) {
-        this.tellphone = tellphone;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getCollege() {
