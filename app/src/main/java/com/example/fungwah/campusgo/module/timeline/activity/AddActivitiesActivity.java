@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.fungwah.campusgo.R;
+import com.example.fungwah.campusgo.application.Config;
 import com.example.fungwah.campusgo.common.bean.Events;
 import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwah.campusgo.common.database.dao.CampusDao;
@@ -24,13 +26,17 @@ import com.example.fungwahtools.util.ToastUtil;
 
 import java.util.Calendar;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+
 /**
  * Created by FungWah on 2017/11/13.
  */
 
 public class AddActivitiesActivity extends BaseActivity implements View.OnClickListener, DatePickerFragment.MySetListener, TimePickerFragment.MySetListener {
 
-
+    private static final String TAG = "AddActivitiesActivity";
     private static final int SET_DATE = 0;
     private static final int SET_TIME = 1;
 
@@ -54,7 +60,7 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
     private int day = calendar.get(Calendar.DAY_OF_MONTH);
     private int hour = calendar.get(Calendar.HOUR_OF_DAY);
     private int minute = calendar.get(Calendar.MINUTE);
-    private String date = year + "." + (month+1)  + "." + day;
+    private String date = year + "." + (month + 1) + "." + day;
     private String time;
 
     private String activityNameStr;
@@ -66,11 +72,11 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case SET_DATE:
-                    date = year + "." + (month+1) + "." + day + "";
+                    date = year + "." + (month + 1) + "." + day + "";
                     datePickerBtn.setText(date);
                     break;
                 case SET_TIME:
-                    formatTime(hour,minute);
+                    formatTime(hour, minute);
                     timePickerBtn.setText(time);
                     break;
             }
@@ -85,6 +91,7 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initView() {
+        Bmob.initialize(this, Config.APP_KEY);
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
         actionbarTitleTv = findView(R.id.actionbar_title_tv);
         actionBarLeft = findView(R.id.actionbar_left_img);
@@ -102,7 +109,7 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
     protected void setView() {
         actionbarTitleTv.setText("添加活动");
         datePickerBtn.setText(date);
-        formatTime(hour,minute);
+        formatTime(hour, minute);
         timePickerBtn.setText(time);
         actionBarLeft.setImageResource(R.drawable.ic_arrow_back_white_36dp);
     }
@@ -141,28 +148,38 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
     }
 
     private void commit() {
-        if(activityNameStr==null||activityNameStr.equals("")){
+        if (activityNameStr == null || activityNameStr.equals("")) {
             ToastUtil.showShort("请填写活动名称");
-        }else if (activityPlaceStr==null||activityPlaceStr.equals("")){
+        } else if (activityPlaceStr == null || activityPlaceStr.equals("")) {
             ToastUtil.showShort("请填写活动地址");
-        }else{
+        } else {
+            long timeMillis = System.currentTimeMillis();
             ContentValues contentValues = new ContentValues();
-            contentValues.put("num",System.currentTimeMillis()+"");
-            contentValues.put("name",activityNameStr);
-            contentValues.put("type","活动");
-            contentValues.put("location",activityPlaceStr);
-            contentValues.put("year",year);
-            contentValues.put("month",month);
-            contentValues.put("day",day);
-            contentValues.put("hour",hour);
-            contentValues.put("minute",minute);
-            contentValues.put("content",activityRemarkStr);
-            Events event = new Events(System.currentTimeMillis()+"",activityNameStr,"活动",year,month,day,hour,minute,activityPlaceStr,activityRemarkStr);
+            contentValues.put("num", timeMillis + "");
+            contentValues.put("name", activityNameStr);
+            contentValues.put("type", "活动");
+            contentValues.put("location", activityPlaceStr);
+            contentValues.put("year", year);
+            contentValues.put("month", month);
+            contentValues.put("day", day);
+            contentValues.put("hour", hour);
+            contentValues.put("minute", minute);
+            contentValues.put("content", activityRemarkStr);
+//            Events event = new Events(Config.user.getNum(),System.currentTimeMillis()+"",activityNameStr,"活动",year,month,day,hour,minute,activityPlaceStr,activityRemarkStr);
+            Events event = new Events(Config.user.getNum(), timeMillis + "", activityNameStr, "活动", year, month, day, hour, minute, activityPlaceStr, activityRemarkStr);
+            event.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if(e==null){
+                        Log.d(TAG, "done: 事件");
+                    }
+                }
+            });
             boolean flag = DataTools.insertEvent(event);
-            if (flag){
+            if (flag) {
                 ToastUtil.showShort("添加成功");
                 onBackPressed();
-            }else{
+            } else {
                 ToastUtil.showShort("添加失败");
             }
         }
@@ -186,13 +203,13 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
         handler.sendEmptyMessage(SET_TIME);
     }
 
-    private void formatTime(int hour,int minute){
+    private void formatTime(int hour, int minute) {
         if (hour < 10) {
             time = "0" + hour;
         } else {
             time = "" + hour;
         }
-        time+=":";
+        time += ":";
         if (minute < 10) {
             time += "0" + minute;
         } else {

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
+import com.example.fungwah.campusgo.application.Config;
 import com.example.fungwah.campusgo.common.DateHelper;
 import com.example.fungwah.campusgo.common.picker.DatePickerFragment;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
@@ -31,6 +32,8 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
 
     private Toolbar toolbar;
     private TextView title;
+    private TextView name;
+    private TextView majorClass;
     private ImageView nav_img;
     private DrawerLayout drawerLayout;
     private RecyclerView drawerRecyclerView;
@@ -63,6 +66,8 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         drawerLayout = findView(R.id.drawer_layout);
         toolbar = findView(R.id.toolbar);
         title = findView(R.id.actionbar_title_tv);
+        name = findView(R.id.user_name_tv);
+        majorClass = findView(R.id.subject_class_tv);
         actionbarDrawDownImg = findView(R.id.action_drawn_down_img);
         nav_img = findView(R.id.actionbar_left_img);
         frameLayout = findView(R.id.framework_fragment_fl);
@@ -96,6 +101,8 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void setView() {
         toolbar.setTitle("");
+        name.setText(Config.user.getName());
+        majorClass.setText(Config.user.getMajorClass());
         setSupportActionBar(toolbar);
 
         drawerRecyclerView.setAdapter(drawerAdapter);
@@ -127,7 +134,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
                 }
                 break;
             case R.id.action_drawn_down_img:
-                datePicker.show(getSupportFragmentManager(),"Choose Date");
+                datePicker.show(getSupportFragmentManager(), "Choose Date");
                 break;
             default:
                 break;
@@ -140,7 +147,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
             replaceFragment(R.id.framework_fragment_fl, fragmentList.get(pageNum));
             title.setText(NAME_ARR[pageNum]);
             if (NAME_ARR[pageNum].equals("时间线")) {
-                datePicker.setMySetListener((TimelineFragment)fragmentList.get(pageNum));
+                datePicker.setMySetListener((TimelineFragment) fragmentList.get(pageNum));
                 actionbarDrawDownImg.setVisibility(View.VISIBLE);
             } else {
                 actionbarDrawDownImg.setVisibility(View.INVISIBLE);
@@ -180,7 +187,7 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
         return view;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         datePicker.setDate(date);
     }
 

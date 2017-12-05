@@ -25,7 +25,7 @@ public class BaseDao {
     private SQLiteOpenHelper helper;
 
     public BaseDao(Context context) {
-        helper = new CampusHelper(context, CampusHelper.DB_NAME, null, 7);
+        helper = new CampusHelper(context, CampusHelper.DB_NAME, null, 8);
     }
 
     public BaseDao(SQLiteOpenHelper helper){

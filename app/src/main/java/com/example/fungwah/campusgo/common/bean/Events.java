@@ -1,11 +1,14 @@
 package com.example.fungwah.campusgo.common.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by FungWah on 2017/11/18.
  */
 
-public class Events {
+public class Events extends BmobObject{
 
+    private String sno;
     private String num;
     private String name;
     private String type;
@@ -50,6 +53,59 @@ public class Events {
         this.location = location;
         this.startWeek = startWeek;
         this.endWeek = endWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Events(String sno,String num, String name, String type, int hour, int minute, int dayOfWeek, String location, String startWeek, String endWeek, String startTime, String endTime) {
+        this.num = num;
+        this.name = name;
+        this.type = type;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayOfWeek = dayOfWeek;
+        this.location = location;
+        this.startWeek = startWeek;
+        this.endWeek = endWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.sno = sno;
+    }
+
+    public Events(String sno, String num, String name, String type, int year, int month, int day, int hour, int minute, int dayOfWeek, String location, String startWeek, String endWeek, String content, String startTime, String endTime) {
+        this.sno = sno;
+        this.num = num;
+        this.name = name;
+        this.type = type;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayOfWeek = dayOfWeek;
+        this.location = location;
+        this.startWeek = startWeek;
+        this.endWeek = endWeek;
+        this.content = content;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Events(String sno, String num, String name, String type, int year, int month, int day, int hour, int minute,  String location ,String content) {
+        this.sno = sno;
+        this.num = num;
+        this.name = name;
+        this.type = type;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayOfWeek = dayOfWeek;
+        this.location = location;
+        this.startWeek = startWeek;
+        this.endWeek = endWeek;
+        this.content = content;
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -172,5 +228,13 @@ public class Events {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getSno() {
+        return sno;
+    }
+
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 }

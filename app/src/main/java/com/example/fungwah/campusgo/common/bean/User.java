@@ -1,10 +1,12 @@
 package com.example.fungwah.campusgo.common.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by FungWah on 2017/11/25.
  */
 
-public class User {
+public class User extends BmobObject{
 
     private String name;
     private String num;
@@ -14,7 +16,7 @@ public class User {
     private String passwordConfirm;
     private String telephone;
     private String college;
-    private String maiorClass;
+    private String majorClass;
 
     public User() {
     }
@@ -28,7 +30,7 @@ public class User {
         this.passwordConfirm = passwordConfirm;
         this.telephone = tellphone;
         this.college = college;
-        this.maiorClass = maiorClass;
+        this.majorClass = maiorClass;
     }
 
     public String getName() {
@@ -95,11 +97,11 @@ public class User {
         this.college = college;
     }
 
-    public String getMaiorClass() {
-        return maiorClass;
+    public String getMajorClass() {
+        return majorClass;
     }
 
-    public void setMaiorClass(String maiorClass) {
-        this.maiorClass = maiorClass;
+    public void setMajorClass(String majorClass) {
+        this.majorClass = majorClass;
     }
 }

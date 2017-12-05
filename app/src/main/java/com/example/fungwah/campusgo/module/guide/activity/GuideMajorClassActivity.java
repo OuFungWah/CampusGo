@@ -1,7 +1,6 @@
 package com.example.fungwah.campusgo.module.guide.activity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +16,8 @@ import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.util.ToastUtil;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by FungWah on 2017/11/25.
@@ -300,10 +301,10 @@ public class GuideMajorClassActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initView() {
-        Bmob.initialize(this,Config.APP_KEY);
+        Bmob.initialize(this, Config.APP_KEY);
         bundle = getIntent().getExtras();
         collegeNum = bundle.getInt("collegeNum");
-        Log.d(TAG, "initView: collegeNum = "+collegeNum);
+        Log.d(TAG, "initView: collegeNum = " + collegeNum);
         lastStepLl = findView(R.id.major_class_last_step_ll);
         finishLl = findView(R.id.major_class_next_step_ll);
         classRg = findView(R.id.guide_class_rg);
@@ -341,13 +342,19 @@ public class GuideMajorClassActivity extends BaseActivity implements View.OnClic
                 if (classRg.getCheckedRadioButtonId() == -1) {
                     ToastUtil.showShort("请选择班级");
                 } else {
-                    boolean flag = DataTools.insertUser(Config.user);
-                    if(flag){
-                        startActivity(LoginActivity.class);
-                        finish();
-                    }else{
-                        ToastUtil.showShort("创建用户失败");
-                    }
+                    Config.user.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null) {
+                                DataTools.insertUser(Config.user);
+                                ToastUtil.showShort("添加数据成功，返回objectId为：" + s);
+                                startActivity(LoginActivity.class);
+                                finish();
+                            } else {
+                                ToastUtil.showShort("创建数据失败：" + e.getMessage());
+                            }
+                        }
+                    });
                 }
                 break;
         }
@@ -364,7 +371,7 @@ public class GuideMajorClassActivity extends BaseActivity implements View.OnClic
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         majorClass = ((RadioButton) (group.findViewById(checkedId))).getText().toString();
-        Config.user.setMaiorClass(majorClass);
+        Config.user.setMajorClass(majorClass);
         Log.d(TAG, "onCheckedChanged: majorClass = " + ((RadioButton) (group.findViewById(checkedId))).getText().toString());
     }
 }

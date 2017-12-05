@@ -31,6 +31,7 @@ public class CampusHelper extends SQLiteOpenHelper {
 
     private String createEventTable = "CREATE TABLE " + TABLE_EVENTS + "(" +
             " num CHAR(64) PRIMARY KEY NOT NULL," +
+            " sno CHAR(64) NOT NULL,"+
             " name CHAR(64) NOT NULL," +
             " type CHAR(20) NOT NULL," +
             " year INT," +
@@ -65,10 +66,5 @@ public class CampusHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + TABLE_EVENTS + "");
         db.execSQL("DROP TABLE " + TABLE_USERS + "");
         onCreate(db);
-//        db.execSQL("ALTER TABLE "+TABLE_EVENTS+" ADD COLUMN year INT NOT NULL");
-//        db.execSQL("ALTER TABLE "+TABLE_EVENTS+" ADD COLUMN month INT NOT NULL");
-//        db.execSQL("ALTER TABLE "+TABLE_EVENTS+" ADD COLUMN day INT NOT NULL");
-//        db.execSQL("ALTER TABLE "+TABLE_EVENTS+" ADD COLUMN hour INT NOT NULL");
-//        db.execSQL("ALTER TABLE "+TABLE_EVENTS+" ADD COLUMN day INT NOT NULL");
     }
 }

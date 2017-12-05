@@ -2,6 +2,7 @@ package com.example.fungwah.campusgo.common.database;
 
 import android.content.ContentValues;
 
+import com.example.fungwah.campusgo.application.Config;
 import com.example.fungwah.campusgo.common.bean.Events;
 import com.example.fungwah.campusgo.common.bean.User;
 import com.example.fungwah.campusgo.common.database.dao.CampusDao;
@@ -29,10 +30,17 @@ public class DataTools {
         return list;
     }
 
+    public static List<Map> selectEventsByDate(String sno,int year, int month, int day, int dayOfWeek) {
+        CampusDao.useTable(CampusHelper.TABLE_EVENTS);
+        List<Map> list = CampusDao.getInstance().select("(sno = ? AND year = ? AND month = ? AND day = ? )OR dayOfWeek=?", new String[]{sno,"" + year, "" + month, day + "", dayOfWeek + ""});
+        return list;
+    }
+
     public static boolean insertEvent(Events event) {
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
         ContentValues contentValues = new ContentValues();
         if (event.getType().equals("活动")) {
+            contentValues.put("sno", Config.user.getNum());
             contentValues.put("num", event.getNum() + "");
             contentValues.put("name", event.getName());
             contentValues.put("type", event.getType());
@@ -46,6 +54,7 @@ public class DataTools {
             boolean flag = CampusDao.getInstance().insert(contentValues);
             return flag;
         } else {
+            contentValues.put("sno", Config.user.getNum());
             contentValues.put("num", event.getNum() + "");
             contentValues.put("name", event.getName());
             contentValues.put("type", event.getType());
@@ -72,9 +81,9 @@ public class DataTools {
         contentValues.put("password", user.getPassword());
         contentValues.put("sex", user.getSex());
         contentValues.put("college", user.getCollege());
-        contentValues.put("subject", user.getMaiorClass().split(" ")[0]);
+        contentValues.put("subject", user.getMajorClass().split(" ")[0]);
         contentValues.put("grade", user.getGrade());
-        contentValues.put("class", user.getMaiorClass().split(" ")[1]);
+        contentValues.put("class", user.getMajorClass().split(" ")[1]);
         flag = CampusDao.getInstance().insert(contentValues);
         return flag;
     }
@@ -104,6 +113,7 @@ public class DataTools {
         for (int i = 0; i < mapList.size(); i++) {
             Events events = new Events();
             if (mapList.get(i).get("type").equals("活动")) {
+                events.setSno(Config.user.getNum());
                 events.setNum((String) mapList.get(i).get("num"));
                 events.setName((String) mapList.get(i).get("name"));
                 events.setType((String) mapList.get(i).get("type"));
@@ -115,6 +125,7 @@ public class DataTools {
                 events.setMinute((int) mapList.get(i).get("minute"));
                 events.setContent((String) mapList.get(i).get("content"));
             } else if (mapList.get(i).get("type").equals("课程")) {
+                events.setSno(Config.user.getNum());
                 events.setNum((String) mapList.get(i).get("num"));
                 events.setName((String) mapList.get(i).get("name"));
                 events.setType((String) mapList.get(i).get("type"));
@@ -140,7 +151,7 @@ public class DataTools {
      */
     public static int getActivitiesNumToday(int year, int month, int day) {
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
-        List list = CampusDao.getInstance().select("type=? AND year=? AND month=? AND day=?", new String[]{"活动", year + "", month + "", day + ""});
+        List list = CampusDao.getInstance().select("sno = ? AND type=? AND year=? AND month=? AND day=?", new String[]{Config.user.getNum(),"活动", year + "", month + "", day + ""});
         return list != null ? list.size() : -1;
     }
 
@@ -151,7 +162,7 @@ public class DataTools {
      */
     public static int getCourseNumToday(int dayOfWeek) {
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
-        List list = CampusDao.getInstance().select("type=? AND dayOfWeek=?", new String[]{"课程", dayOfWeek + ""});
+        List list = CampusDao.getInstance().select("sno = ? AND type=? AND dayOfWeek=?", new String[]{Config.user.getNum(),"课程", dayOfWeek + ""});
         return list != null ? list.size() : -1;
     }
 
