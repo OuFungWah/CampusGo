@@ -15,7 +15,7 @@ import android.widget.TimePicker;
 
 import com.example.fungwah.campusgo.R;
 import com.example.fungwah.campusgo.application.Config;
-import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.common.bean.Event;
 import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwah.campusgo.common.database.dao.CampusDao;
 import com.example.fungwah.campusgo.common.database.helper.CampusHelper;
@@ -165,23 +165,25 @@ public class AddActivitiesActivity extends BaseActivity implements View.OnClickL
             contentValues.put("hour", hour);
             contentValues.put("minute", minute);
             contentValues.put("content", activityRemarkStr);
-//            Events event = new Events(Config.user.getNum(),System.currentTimeMillis()+"",activityNameStr,"活动",year,month,day,hour,minute,activityPlaceStr,activityRemarkStr);
-            Events event = new Events(Config.user.getNum(), timeMillis + "", activityNameStr, "活动", year, month, day, hour, minute, activityPlaceStr, activityRemarkStr);
+            final Event event = new Event(Config.user.getNum(), timeMillis + "", activityNameStr, "活动", year, month, day, hour, minute, activityPlaceStr, activityRemarkStr);
             event.save(new SaveListener<String>() {
                 @Override
                 public void done(String s, BmobException e) {
-                    if(e==null){
-                        Log.d(TAG, "done: 事件");
+                    if (e == null) {
+                        Log.d(TAG, "done: 上传事件成功: " + s);
+                        boolean flag = DataTools.insertEvent(event);
+                        if (flag) {
+                            ToastUtil.showShort("添加成功");
+                            onBackPressed();
+                        } else {
+                            ToastUtil.showShort("添加本地失败");
+                        }
+                    } else {
+                        ToastUtil.showShort("上传服务器失败");
+                        Log.d(TAG, "done: 上传事件失败: " + e.getMessage());
                     }
                 }
             });
-            boolean flag = DataTools.insertEvent(event);
-            if (flag) {
-                ToastUtil.showShort("添加成功");
-                onBackPressed();
-            } else {
-                ToastUtil.showShort("添加失败");
-            }
         }
 
     }

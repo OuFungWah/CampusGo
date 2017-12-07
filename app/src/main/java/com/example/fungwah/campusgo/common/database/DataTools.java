@@ -1,18 +1,30 @@
 package com.example.fungwah.campusgo.common.database;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.Nullable;
 
 import com.example.fungwah.campusgo.application.Config;
-import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.common.TimeComparator;
+import com.example.fungwah.campusgo.common.bean.Event;
 import com.example.fungwah.campusgo.common.bean.User;
 import com.example.fungwah.campusgo.common.database.dao.CampusDao;
 import com.example.fungwah.campusgo.common.database.helper.CampusHelper;
+import com.example.fungwah.campusgo.module.framework.activity.FrameWorkActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by FungWah on 2017/11/19.
@@ -36,7 +48,21 @@ public class DataTools {
         return list;
     }
 
-    public static boolean insertEvent(Events event) {
+    public static int getAllEventsCount(){
+        CampusDao.useTable(CampusHelper.TABLE_EVENTS);
+        List<Map> list = CampusDao.getInstance().select(null,null);
+        if(list!=null){
+            if(list.size()>=0){
+                return list.size();
+            }else{
+                return -1;
+            }
+        }else{
+            return -1;
+        }
+    }
+
+    public static boolean insertEvent(Event event) {
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
         ContentValues contentValues = new ContentValues();
         if (event.getType().equals("活动")) {
@@ -107,41 +133,42 @@ public class DataTools {
         return flag;
     }
 
-    public static List<Events> changeIntoEvent(List<Map> mapList) {
+    public static List<Event> changeIntoEvent(List<Map> mapList) {
         CampusDao.useTable(CampusHelper.TABLE_EVENTS);
-        List<Events> eventsList = new ArrayList<>();
+        List<Event> eventList = new ArrayList<>();
         for (int i = 0; i < mapList.size(); i++) {
-            Events events = new Events();
+            Event event = new Event();
             if (mapList.get(i).get("type").equals("活动")) {
-                events.setSno(Config.user.getNum());
-                events.setNum((String) mapList.get(i).get("num"));
-                events.setName((String) mapList.get(i).get("name"));
-                events.setType((String) mapList.get(i).get("type"));
-                events.setLocation((String) mapList.get(i).get("location"));
-                events.setYear((int) mapList.get(i).get("year"));
-                events.setMinute((int) mapList.get(i).get("month"));
-                events.setDay((int) mapList.get(i).get("day"));
-                events.setHour((int) mapList.get(i).get("hour"));
-                events.setMinute((int) mapList.get(i).get("minute"));
-                events.setContent((String) mapList.get(i).get("content"));
+                event.setSno(Config.user.getNum());
+                event.setNum((String) mapList.get(i).get("num"));
+                event.setName((String) mapList.get(i).get("name"));
+                event.setType((String) mapList.get(i).get("type"));
+                event.setLocation((String) mapList.get(i).get("location"));
+                event.setYear((int) mapList.get(i).get("year"));
+                event.setMinute((int) mapList.get(i).get("month"));
+                event.setDay((int) mapList.get(i).get("day"));
+                event.setHour((int) mapList.get(i).get("hour"));
+                event.setMinute((int) mapList.get(i).get("minute"));
+                event.setContent((String) mapList.get(i).get("content"));
             } else if (mapList.get(i).get("type").equals("课程")) {
-                events.setSno(Config.user.getNum());
-                events.setNum((String) mapList.get(i).get("num"));
-                events.setName((String) mapList.get(i).get("name"));
-                events.setType((String) mapList.get(i).get("type"));
-                events.setLocation((String) mapList.get(i).get("location"));
-                events.setDayOfWeek((int) mapList.get(i).get("dayOfWeek"));
-                events.setHour((int) mapList.get(i).get("hour"));
-                events.setMinute((int) mapList.get(i).get("minute"));
-                events.setStartWeek((String) mapList.get(i).get("startWeek"));
-                events.setEndWeek((String) mapList.get(i).get("endWeek"));
-                events.setStartTime((String) mapList.get(i).get("startTime"));
-                events.setEndTime((String) mapList.get(i).get("endTime"));
+                event.setSno(Config.user.getNum());
+                event.setNum((String) mapList.get(i).get("num"));
+                event.setName((String) mapList.get(i).get("name"));
+                event.setType((String) mapList.get(i).get("type"));
+                event.setLocation((String) mapList.get(i).get("location"));
+                event.setDayOfWeek((int) mapList.get(i).get("dayOfWeek"));
+                event.setHour((int) mapList.get(i).get("hour"));
+                event.setMinute((int) mapList.get(i).get("minute"));
+                event.setStartWeek((String) mapList.get(i).get("startWeek"));
+                event.setEndWeek((String) mapList.get(i).get("endWeek"));
+                event.setStartTime((String) mapList.get(i).get("startTime"));
+                event.setEndTime((String) mapList.get(i).get("endTime"));
             }
 
-            eventsList.add(events);
+            eventList.add(event);
         }
-        return eventsList;
+        Collections.sort(eventList,new TimeComparator());
+        return eventList;
     }
 
     /**
@@ -225,6 +252,22 @@ public class DataTools {
             dowMap3.put(Calendar.SUNDAY, 7);
         }
         return dowMap3.get(dayOfDay);
+    }
+
+    public static void getEventFromNet(){
+//        Bmob.initialize(context,Config.APP_KEY);
+        BmobQuery<Event> eventBmobQuery = new BmobQuery<>();
+        eventBmobQuery.addWhereEqualTo("sno",Config.user.getNum());
+        eventBmobQuery.findObjects(new FindListener<Event>() {
+            @Override
+            public void done(List<Event> list, BmobException e) {
+                if(e==null){
+                    for(int i =0;i<list.size();i++){
+                        DataTools.insertEvent(list.get(i));
+                    }
+                }
+            }
+        });
     }
 
 }

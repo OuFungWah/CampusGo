@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,11 +18,15 @@ import com.example.fungwah.campusgo.common.DateHelper;
 import com.example.fungwah.campusgo.common.picker.DatePickerFragment;
 import com.example.fungwah.campusgo.module.framework.adapter.DrawerListAdapter;
 import com.example.fungwah.campusgo.module.framework.bean.DrawerItemBean;
+import com.example.fungwah.campusgo.module.guide.activity.LoginActivity;
+import com.example.fungwah.campusgo.module.guide.activity.WelcomeActivity;
 import com.example.fungwah.campusgo.module.homepage.fragment.HomepageFragment;
 import com.example.fungwah.campusgo.module.setting.activity.SettingActivity;
+import com.example.fungwah.campusgo.module.timeline.OnRefreshListener;
 import com.example.fungwah.campusgo.module.timeline.fragment.TimelineFragment;
 import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.fragment.BaseFragment;
+import com.example.fungwahtools.util.SPUtil;
 import com.example.fungwahtools.util.ToastUtil;
 
 import java.util.ArrayList;
@@ -121,6 +126,24 @@ public class FrameWorkActivity extends BaseActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.homepage_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item1:
+                try {
+                    SPUtil.getInstance("loginConfig").clearAll();
+                    startActivity(LoginActivity.class);
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

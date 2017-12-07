@@ -13,7 +13,7 @@ public class CampusHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "Campus";
     public static final String TABLE_USERS = "Users";
-    public static final String TABLE_EVENTS = "Events";
+    public static final String TABLE_EVENTS = "Event";
 
     //注意SQLite的大小写
     private String createUserTable = "CREATE TABLE " + TABLE_USERS + "(" +

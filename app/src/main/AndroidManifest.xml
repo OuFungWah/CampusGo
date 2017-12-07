@@ -38,6 +38,8 @@
         <activity android:name=".module.guide.activity.CollegeChooseActivity"/>
         <activity android:name=".module.guide.activity.GuideMajorClassActivity"/>
         <activity android:name=".module.guide.activity.LoginActivity"/>
+
+        <service android:name=".common.service.UpdateEventService" />
     </application>
 
 </manifest>

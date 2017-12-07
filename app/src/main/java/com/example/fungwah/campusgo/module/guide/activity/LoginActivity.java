@@ -75,41 +75,51 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.login_finish_ll:
                 inputSno = snoEt.getText().toString();
                 inputPassword = passwordEt.getText().toString();
-                User user = DataTools.selectUserByNum(inputSno);
-                if (user == null) {
-                    //若本地数据库没有该用户
-                    BmobQuery<User> bmobQuery = new BmobQuery<>();
-                    bmobQuery.addWhereEqualTo("num", inputSno).findObjects(new FindListener<User>() {
-                        @Override
-                        public void done(List<User> list, BmobException e) {
-                            if (e == null) {
-                                Log.d(TAG, "done: " + list.get(0).toString());
-                                if(inputPassword.equals(list.get(0).getPassword())){
-                                    Config.user = list.get(0);
-                                    try {
-                                        SPUtil.getInstance("loginConfig").putString("num",Config.user.getNum());
-                                        SPUtil.getInstance("loginConfig").putString("password",Config.user.getPassword());
-                                    } catch (Exception e1) {
-                                        e1.printStackTrace();
-                                    }
+
+                BmobQuery<User> bmobQuery = new BmobQuery<>();
+                bmobQuery.addWhereEqualTo("num", inputSno).findObjects(new FindListener<User>() {
+                    @Override
+                    public void done(List<User> list, BmobException e) {
+                        if (e == null) {
+                            Log.d(TAG, "done: " + list.get(0).toString());
+                            if (inputPassword.equals(list.get(0).getPassword())) {
+                                Config.user = list.get(0);
+                                DataTools.getEventFromNet();
+                                //存储登录成功的用户
+                                try {
+                                    SPUtil.getInstance("loginConfig").putString("num", Config.user.getNum());
+                                    SPUtil.getInstance("loginConfig").putString("password", Config.user.getPassword());
                                     DataTools.insertUser(Config.user);
                                     startActivity(FrameWorkActivity.class);
                                     finish();
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
                                 }
                             } else {
+                                ToastUtil.showShort("密码不正确");
+                            }
+                        } else {
+                            ToastUtil.showShort("服务器不通，尝试本地登录");
+                            User user = DataTools.selectUserByNum(inputSno);
+                            if (user == null) {
+                                //若本地数据库没有该用户
                                 ToastUtil.showShort("不存在该学生，请注册");
-//                                Log.d(TAG, "done: exception: " + e.toString());
-//                                DataTools.insertUser()
+                            } else if (inputPassword.equals(user.getPassword())) {
+                                ToastUtil.showShort("密码不正确");
+                            } else {
+                                Config.user = user;
+                                try {
+                                    SPUtil.getInstance("loginConfig").putString("num", Config.user.getNum());
+                                    SPUtil.getInstance("loginConfig").putString("password", Config.user.getPassword());
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+                                startActivity(FrameWorkActivity.class);
+                                finish();
                             }
                         }
-                    });
-                } else if (!inputPassword.equals(user.getPassword())) {
-                    ToastUtil.showShort("密码不正确");
-                } else {
-                    Config.user = user;
-                    startActivity(FrameWorkActivity.class);
-                    finish();
-                }
+                    }
+                });
                 break;
             case R.id.register_tv:
                 startActivity(GuideBaseInfoActivity.class);

@@ -11,7 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.application.Config;
+import com.example.fungwah.campusgo.common.bean.Event;
 import com.example.fungwah.campusgo.common.database.DataTools;
 import com.example.fungwahtools.activity.BaseActivity;
 import com.example.fungwahtools.util.ToastUtil;
@@ -19,6 +20,10 @@ import com.example.fungwahtools.util.ToastUtil;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by FungWah on 2017/10/25.
@@ -31,7 +36,7 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
     private TextView actionbarTitle;
     private ImageView actionbarLeft;
 
-    private Map<String,Integer> dayOfWeekMap = new HashMap();
+    private Map<String, Integer> dayOfWeekMap = new HashMap();
 
     private EditText courseNameEt;
     private EditText courseTeacherEt;
@@ -82,6 +87,7 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
+        Bmob.initialize(this, Config.APP_KEY);
         placeAdapter = ArrayAdapter.createFromResource(this, R.array.classroom_arr, android.R.layout.simple_spinner_item);
         dayOfWeekAdapter = ArrayAdapter.createFromResource(this, R.array.day_arr, android.R.layout.simple_spinner_item);
         startWeekAdapter = ArrayAdapter.createFromResource(this, R.array.week_arr, android.R.layout.simple_spinner_item);
@@ -107,13 +113,13 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
         startTimeStrArr = getResources().getStringArray(R.array.course_start_time_arr);
         endTimeStrArr = getResources().getStringArray(R.array.course_end_time_arr);
 
-        dayOfWeekMap.put("星期一",1);
-        dayOfWeekMap.put("星期二",2);
-        dayOfWeekMap.put("星期三",3);
-        dayOfWeekMap.put("星期四",4);
-        dayOfWeekMap.put("星期五",5);
-        dayOfWeekMap.put("星期六",6);
-        dayOfWeekMap.put("星期日",7);
+        dayOfWeekMap.put("星期一", 1);
+        dayOfWeekMap.put("星期二", 2);
+        dayOfWeekMap.put("星期三", 3);
+        dayOfWeekMap.put("星期四", 4);
+        dayOfWeekMap.put("星期五", 5);
+        dayOfWeekMap.put("星期六", 6);
+        dayOfWeekMap.put("星期日", 7);
 
     }
 
@@ -158,35 +164,39 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
     private void commit() {
         String tempHour;
         String tempMin;
-        Log.d(TAG, "commit:courseNameStr "+courseNameStr);
-        Log.d(TAG, "commit:courseTeacherStr "+courseTeacherStr);
-        Log.d(TAG, "commit:courseDayOfWeek "+courseDayOfWeek);
-        Log.d(TAG, "commit:courseLocationStr "+courseLocationStr);
-        Log.d(TAG, "commit:startWeek "+startWeek);
-        Log.d(TAG, "commit:endWeek "+endWeek);
-        Log.d(TAG, "commit:startTime "+startTime);
-        Log.d(TAG, "commit:endTime "+endTime);
         String tempArr[] = startTime.split(":");
         tempHour = tempArr[0];
-        tempMin =tempArr[1];
-        Log.d(TAG, "commit: tempHour "+tempHour);
-        Log.d(TAG, "commit: tempMin "+tempMin);
-        if(courseNameStr==null||courseNameStr.equals("")){
+        tempMin = tempArr[1];
+        Log.d(TAG, "commit: tempHour " + tempHour);
+        Log.d(TAG, "commit: tempMin " + tempMin);
+        if (courseNameStr == null || courseNameStr.equals("")) {
             ToastUtil.showShort("课程名不可为空");
-        }else if(courseTeacherStr==null||courseTeacherStr.equals("")){
+        } else if (courseTeacherStr == null || courseTeacherStr.equals("")) {
             ToastUtil.showShort("老师名不可为空");
-        }else if(!checkWeek(startWeek,endWeek)){
+        } else if (!checkWeek(startWeek, endWeek)) {
             ToastUtil.showShort("结束周不能在开始周之前");
-        }else if(!checkTime(startTime,endTime)){
+        } else if (!checkTime(startTime, endTime)) {
             ToastUtil.showShort("下课时间不可在上课之前");
-        }else{
-            Events events = new Events(System.currentTimeMillis()+"",courseNameStr,"课程",Integer.parseInt(tempHour),Integer.parseInt(tempMin),courseDayOfWeek,courseLocationStr,startWeek,endWeek,startTime,endTime);
-            boolean flag = DataTools.insertEvent(events);
-            if (flag){
-                onBackPressed();
-            }else{
-                ToastUtil.showShort("添加课程失败");
-            }
+        } else {
+            final Event event = new Event(Config.user.getNum(), System.currentTimeMillis() + "", courseNameStr, "课程", Integer.parseInt(tempHour), Integer.parseInt(tempMin), courseDayOfWeek, courseLocationStr, startWeek, endWeek, startTime, endTime);
+            event.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if (e == null) {
+                        Log.d(TAG, "done: 上传事件成功: " + s);
+                        boolean flag = DataTools.insertEvent(event);
+                        if (flag) {
+                            ToastUtil.showShort("添加成功");
+                            onBackPressed();
+                        } else {
+                            ToastUtil.showShort("添加本地失败");
+                        }
+                    } else {
+                        ToastUtil.showShort("上传服务器失败");
+                        Log.d(TAG, "done: 上传事件失败: " + e.getMessage());
+                    }
+                }
+            });
         }
     }
 
@@ -194,15 +204,15 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.equals(dayOfWeekSpin)) {
             courseDayOfWeek = dayOfWeekMap.get(dayOfWeekStrArr[position]);
-        }else if (parent.equals(placeSpin)){
+        } else if (parent.equals(placeSpin)) {
             courseLocationStr = classRoomStrArr[position];
-        }else if (parent.equals(startWeekSpin)){
+        } else if (parent.equals(startWeekSpin)) {
             startWeek = startWeekStrArr[position];
-        }else if (parent.equals(endWeekSpin)){
+        } else if (parent.equals(endWeekSpin)) {
             endWeek = endWeekStrArr[position];
-        }else if (parent.equals(startTimeSpin)){
+        } else if (parent.equals(startTimeSpin)) {
             startTime = startTimeStrArr[position];
-        }else if (parent.equals(endTimeSpin)){
+        } else if (parent.equals(endTimeSpin)) {
             endTime = endTimeStrArr[position];
         }
     }
@@ -211,38 +221,38 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
     public void onNothingSelected(AdapterView<?> parent) {
         if (parent.equals(dayOfWeekSpin)) {
             courseDayOfWeek = dayOfWeekMap.get(dayOfWeekStrArr[0]);
-        }else if (parent.equals(placeSpin)){
+        } else if (parent.equals(placeSpin)) {
             courseLocationStr = classRoomStrArr[0];
-        }else if (parent.equals(startWeekSpin)){
+        } else if (parent.equals(startWeekSpin)) {
             startWeek = startWeekStrArr[0];
-        }else if (parent.equals(endWeekSpin)){
+        } else if (parent.equals(endWeekSpin)) {
             endWeek = endWeekStrArr[0];
-        }else if (parent.equals(startTimeSpin)){
+        } else if (parent.equals(startTimeSpin)) {
             startTime = startTimeStrArr[0];
-        }else if (parent.equals(endTimeSpin)){
+        } else if (parent.equals(endTimeSpin)) {
             endTime = endTimeStrArr[0];
         }
     }
 
     /**
      * 检查开始周是否在结束周以前
+     *
      * @param startWeek
      * @param endWeek
      * @return
      */
-    private boolean checkWeek(String startWeek,String endWeek){
-        int startInt = Integer.parseInt(startWeek.substring(1,startWeek.length()-1));
-        int endInt = Integer.parseInt(endWeek.substring(1,endWeek.length()-1));
-        return !(startInt>endInt);
+    private boolean checkWeek(String startWeek, String endWeek) {
+        int startInt = Integer.parseInt(startWeek.substring(1, startWeek.length() - 1));
+        int endInt = Integer.parseInt(endWeek.substring(1, endWeek.length() - 1));
+        return !(startInt > endInt);
     }
 
     /**
-     *
      * @param startTime
      * @param endTime
      * @return
      */
-    private boolean checkTime(String startTime,String endTime){
+    private boolean checkTime(String startTime, String endTime) {
         boolean flag = false;
         int startHour;
         int startMin;
@@ -254,15 +264,15 @@ public class AddCourseActivity extends BaseActivity implements View.OnClickListe
         startMin = Integer.parseInt(startArr[1]);
         endHour = Integer.parseInt(endArr[0]);
         endMin = Integer.parseInt(endArr[1]);
-        if(startHour>endHour){
+        if (startHour > endHour) {
             flag = false;
-        }else if(startHour==endHour){
-            if(startMin>endMin){
+        } else if (startHour == endHour) {
+            if (startMin > endMin) {
                 flag = false;
-            }else{
+            } else {
                 flag = true;
             }
-        }else{
+        } else {
             flag = true;
         }
         return flag;

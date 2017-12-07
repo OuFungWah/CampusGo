@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.fungwah.campusgo.R;
-import com.example.fungwah.campusgo.common.bean.Events;
+import com.example.fungwah.campusgo.common.bean.Event;
 import com.example.fungwah.campusgo.module.homepage.bean.TimeLineViewHolder;
 
 import java.util.List;
@@ -23,9 +23,9 @@ public class TimeLineListAdapter extends RecyclerView.Adapter<TimeLineViewHolder
     private static final int COURSE = 0;
     private static final int ACTIVITIES = 1;
 
-    private List<Events> list;
+    private List<Event> list;
 
-    public TimeLineListAdapter(List<Events> list) {
+    public TimeLineListAdapter(List<Event> list) {
         this.list = list;
     }
 
@@ -44,7 +44,7 @@ public class TimeLineListAdapter extends RecyclerView.Adapter<TimeLineViewHolder
     public void onBindViewHolder(TimeLineViewHolder holder, int position) {
         holder.itemView.setTag(position);
         holder.itemView.setOnLongClickListener(this);
-        Events event = list.get(position);
+        Event event = list.get(position);
         holder.timeLongTv.setText(null);
         String hour = event.getHour() < 10 ? "0" + event.getHour() : "" + event.getHour();
         String min = event.getMinute() < 10 ? "0" + event.getMinute() : "" + event.getMinute();
